@@ -3,20 +3,44 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
 type Mutation {
-  createSession(data: SessionInput!): Session!
+  createSession(name: String!): Session!
+  deleteSession(name: String!): Boolean
+  toggleSession(name: String!, status: SessionStatus!): Session!
+  updateSession(isModerated: Boolean!, isOpen: Boolean!, name: String!): Session!
 }
 
 type Query {
-  getSession(id: String!): Session!
+  getSession(name: String!): Session
+  listSessions: [Session!]!
 }
 
 """The Session model"""
 type Session {
+  columns: [SessionColumn!]!
+  end: DateTime
   id: ID!
+  isModerated: Boolean!
+  isOpen: Boolean!
   name: String!
+  start: DateTime
+  status: SessionStatus!
 }
 
-input SessionInput {
-  name: String!
+"""The Session column model"""
+type SessionColumn {
+  label: String!
+  position: Float!
+}
+
+enum SessionStatus {
+  break
+  done
+  pomodoro
+  unbegun
 }

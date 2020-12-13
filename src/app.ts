@@ -10,13 +10,15 @@ const main = async () => {
     // create mongoose connection
     const mongoose = await connect(config.mongoose.databaseUrl, config.mongoose.options);
     await mongoose.connection;
-
+    
     const app = Express();
     const apollo = await server();
 
     apollo.applyMiddleware({app});
-    app.listen({ port }, () =>
-        console.log(`🚀 Server ready and listening at ==> http://localhost:${port}${apollo.graphqlPath}`))
+    app.listen({ port }, () => {
+        console.log(`🚀 Server ready and listening at ==> http://localhost:${port}`);
+        console.log(`🚀 Apollo server ==> http://localhost:${port}${apollo.graphqlPath}`);
+    })
 };
 
 main().catch((error)=>{
