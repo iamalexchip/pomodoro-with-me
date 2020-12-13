@@ -24,13 +24,13 @@ export class SessionResolver {
       {
         name,
         columns: [
-          { position: 1, label: 'Todo' },
-          { position: 2, label: 'Working on' },
-          { position: 3, label: 'Done' }
+          { position: 1, isFocus: false, label: 'Todo' },
+          { position: 2, isFocus: true, label: 'Working on' },
+          { position: 3, isFocus: false, label: 'Done' }
         ]
       }
     );
-    return session.save();
+    return await session.save();
   };
 
   @Mutation(() => Session)

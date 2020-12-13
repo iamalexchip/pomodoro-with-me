@@ -12,6 +12,9 @@ registerEnumType(SessionStatus, { name: "SessionStatus" });
 
 @ObjectType({ description: "The Session column model" })
 export class SessionColumn {
+  @Field(() => ID)
+  id: number;
+  
   @Field()
   @Property({ required: true })
   position: number;
@@ -19,6 +22,10 @@ export class SessionColumn {
   @Field()
   @Property({ required: true })
   label: string;
+
+  @Field()
+  @Property({ default: false })
+  isFocus?: boolean;
 }
 
 @ObjectType({ description: "The Session model" })
