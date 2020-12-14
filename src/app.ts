@@ -1,4 +1,5 @@
 import Express from "express";
+import path from "path";
 import "reflect-metadata";
 import { connect } from "mongoose";
 import { server } from "./apollo";
@@ -13,8 +14,17 @@ const main = async () => {
     
     const app = Express();
     const apollo = await server();
-
     apollo.applyMiddleware({app});
+
+    // Serve static files from the React app
+    app.use(Express.static(path.join(__dirname, 'client/build')));
+    
+    // The "catchall" handler: for any request that doesn't
+    // match one above, send back React's index.html file.
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname+'/client/build/index.html'));
+    });
+
     app.listen({ port }, () => {
         console.log(`🚀 Server ready and listening at ==> http://localhost:${port}`);
         console.log(`🚀 Apollo server ==> http://localhost:${port}${apollo.graphqlPath}`);
