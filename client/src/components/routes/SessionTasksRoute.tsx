@@ -46,7 +46,7 @@ const SessionTasksRoute = () => {
     <div><h3>Tasks</h3>
       <ul>
         {tasks.map((task) => 
-          <li>{task.title}</li>
+          <li key={task.id}>{task.title}</li>
         )}
       </ul>
     </div>

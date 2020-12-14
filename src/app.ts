@@ -25,9 +25,8 @@ const main = async () => {
         res.sendFile(path.join(__dirname+'/client/build/index.html'));
     });
 
-    app.listen({ port }, () => {
-        console.log(`🚀 Apollo server ==> http://localhost:${port}${apollo.graphqlPath}`);
-    })
+    app.listen({ port }, () =>
+        console.log(`🚀 Server ready and listening at ==> http://localhost:${port}`));
 };
 
 main().catch((error)=>{
