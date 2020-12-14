@@ -11,16 +11,20 @@ scalar DateTime
 type Mutation {
   createColumn(label: String!, session: String!): Session!
   createSession(name: String!): Session!
+  createTask(column: String!, session: String!, title: String!): Task!
   deleteColumn(id: String!, session: String!): Session
   deleteSession(name: String!): Boolean
+  deleteTask(id: String!): Boolean
   toggleSession(name: String!, status: SessionStatus!): Session!
   updateColumn(id: String!, isFocus: Boolean, label: String, position: Float, session: String!): Session!
   updateSession(isModerated: Boolean!, isOpen: Boolean!, name: String!): Session!
+  updateTask(column: String, id: String!, title: String): Task!
 }
 
 type Query {
   getSession(name: String!): Session
   listSessions: [Session!]!
+  listTasks(session: String!): [Task!]!
 }
 
 """The Session model"""
@@ -48,4 +52,22 @@ enum SessionStatus {
   done
   pomodoro
   unbegun
+}
+
+"""The Task model"""
+type Task {
+  column: String!
+  createAt: DateTime!
+  id: ID!
+  session: Session
+  timesheet: [TaskTimesheet!]!
+  title: String!
+  updateAt: DateTime!
+}
+
+"""The Session column model"""
+type TaskTimesheet {
+  end: DateTime
+  id: ID!
+  start: DateTime
 }

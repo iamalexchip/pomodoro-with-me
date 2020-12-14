@@ -2,6 +2,7 @@ import { ApolloError } from "apollo-server-express";
 import { Resolver, Mutation, Arg, Query, Args } from "type-graphql";
 import { Session, SessionModel, SessionStatus } from "../entities/Session";
 import { UpdateSessionArgs, ToggleSessionArgs } from "./types/SessionTypes";
+import * as SessionService from "../services/SessionService";
 
 @Resolver()
 export class SessionResolver {
@@ -12,8 +13,8 @@ export class SessionResolver {
   };
 
   @Query(_returns => Session, { nullable: true })
-  async getSession(@Arg("name") name: string){
-    return await SessionModel.findOne({ name });
+  async getSession(@Arg("name") name: string) {
+    return await SessionService.findOrFail({ name });
   };
 
   @Mutation(() => Session)
@@ -35,9 +36,7 @@ export class SessionResolver {
 
   @Mutation(() => Session)
   async updateSession(@Args() { name, isModerated, isOpen }: UpdateSessionArgs) {
-    const session = await SessionModel.findOne({ name });
-    if(!session) throw new ApolloError('Session not found', 'SESSION_NOT_FOUND');
-    
+    const session = await SessionService.findOrFail({ name });
     session.isModerated = (isModerated === undefined) ? session.isModerated : isModerated;
     session.isOpen = (isOpen === undefined) ? session.isOpen : isOpen;
 
@@ -46,8 +45,7 @@ export class SessionResolver {
 
   @Mutation(() => Session)
   async toggleSession(@Args() { name, status }: ToggleSessionArgs) {
-    const session = await SessionModel.findOne({ name });
-    if(!session) throw new ApolloError('Session not found', 'SESSION_NOT_FOUND');
+    const session = await SessionService.findOrFail({ name });
 
     if (status === 'unbegun') {
       // notify(reset)
@@ -90,8 +88,7 @@ export class SessionResolver {
 
   @Mutation(_returns => Boolean, { nullable: true })
   async deleteSession(@Arg("name") name: string){
-    const session = await SessionModel.findOne({ name });
-    if(!session) throw new ApolloError('Session not found', 'SESSION_NOT_FOUND');
+    await SessionService.findOrFail({ name });
     await SessionModel.deleteOne({ name });
     return true;
   };

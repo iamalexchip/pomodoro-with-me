@@ -1,5 +1,6 @@
 import { ObjectType, Field, ID, registerEnumType } from "type-graphql";
-import { prop as Property, getModelForClass } from "@typegoose/typegoose";
+import { prop as Property, getModelForClass, Ref } from "@typegoose/typegoose";
+import { Task } from "./Task";
 
 export enum SessionStatus {
   unbegun =  'unbegun',
@@ -24,7 +25,7 @@ export class SessionColumn {
   label: string;
 
   @Field()
-  @Property({ default: false })
+  @Property({ required: true, default: false })
   isFocus?: boolean;
 }
 
@@ -60,7 +61,7 @@ export class Session {
   
   @Field(_type => [SessionColumn])
   @Property({ type: [SessionColumn] })
-  columns: SessionColumn[] 
+  columns: SessionColumn[]
 }
 
 export const SessionModel = getModelForClass(Session, { schemaOptions: { timestamps: true } });

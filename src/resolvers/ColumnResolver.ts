@@ -21,7 +21,16 @@ export class ColumnResolver {
     const column = session.columns.id(id);
     if (!column) throw new ApolloError('Column not found on session', 'COLUMN_NOT_FOUND');
     if (label) column.label = label;
-    if (isFocus !== undefined) column.isFocus = isFocus;
+    if (isFocus !== undefined && column.isFocus !== isFocus) {
+      column.isFocus = isFocus;
+      /*
+      if (isFocus) {
+        task.start(column.id)
+      } else {
+        task.stop(column.id)
+      }
+      */
+    }
     if (position && column.position != position) {
       const columnToSwap = session.columns.find((sessionColumn: SessionColumn) =>
         sessionColumn.position === position);
