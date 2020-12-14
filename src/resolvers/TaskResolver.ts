@@ -51,9 +51,9 @@ export class TaskResolver {
         );
       }
 
-      if (!targetColumn.isFocus) {
+      if (previousColumn.isFocus && !targetColumn.isFocus) {
         const lastTimeEntry = task.timesheet[task.timesheet.length - 1];
-        if (lastTimeEntry.end === null) lastTimeEntry.end = new Date();
+        lastTimeEntry.end = new Date();
       }
       
       if (session.status === "pomodoro" && !previousColumn.isFocus && targetColumn.isFocus) {

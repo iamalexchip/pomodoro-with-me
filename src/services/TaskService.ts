@@ -1,5 +1,6 @@
 import { ApolloError } from "apollo-server-express";
-import { Task, TaskModel } from "../entities/Task";
+import { Session } from "inspector";
+import { TaskModel } from "../entities/Task";
 
 export const findOrFail = async(id: string) => {
   const task = await TaskModel.findById(id).populate('session');
@@ -9,4 +10,38 @@ export const findOrFail = async(id: string) => {
   // todo: check if has can edit task
 
   return task;
+}
+
+export const startTasks = async(session: any, column?: string) => {
+  column;
+  const tasks = await TaskModel.find({ session: session.id });
+
+  tasks.map(async(task: any) => {
+    if (session.columns.id(task.column).isFocus) {
+      task.timesheet.push({ start: new Date() });
+      await task.save();
+    }
+  });
+}
+
+export const stopTasks = async(session: any, column?: string) => {
+  column;
+  const tasks = await TaskModel.find({ session: session.id });
+  
+  tasks.map(async(task: any) => {
+    if (session.columns.id(task.column).isFocus) {
+      const lastTimeEntry = task.timesheet[task.timesheet.length - 1];
+      lastTimeEntry.end = new Date();
+      await task.save();
+    }
+  });
+}
+
+export const clearTasks = async(session: any) => {
+  const tasks = await TaskModel.find({ session: session.id });
+  
+  tasks.map(async(task: any) => {
+    task.timesheet = [];
+    task.save();
+  })
 }

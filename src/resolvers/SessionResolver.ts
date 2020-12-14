@@ -3,6 +3,7 @@ import { Resolver, Mutation, Arg, Query, Args } from "type-graphql";
 import { Session, SessionModel, SessionStatus } from "../entities/Session";
 import { UpdateSessionArgs, ToggleSessionArgs } from "./types/SessionTypes";
 import * as SessionService from "../services/SessionService";
+import { clearTasks, startTasks, stopTasks, } from "../services/TaskService";
 
 @Resolver()
 export class SessionResolver {
@@ -47,11 +48,15 @@ export class SessionResolver {
   async toggleSession(@Args() { name, status }: ToggleSessionArgs) {
     const session = await SessionService.findOrFail({ name });
 
+    if (session.status === status) {
+      throw new ApolloError(`Session status is already set to [${status}]`, 'SESSION_DESYNC');
+    }
+
     if (status === 'unbegun') {
-      // notify(reset)
-      // Tasks.clear(session)
       session.start = null;
       session.end = null;
+      clearTasks(session)
+      // todo: notify(reset)
 
     } else {
       if (session.status === 'done') {
@@ -61,24 +66,25 @@ export class SessionResolver {
 
     if (status === 'pomodoro') {
       if (session.status === 'unbegun') {
-        // todo: notify('start): emails etc
         session.start = new Date();
+        // todo: notify('start): emails etc
       } else {
         // notify('continue')// run async
       }
 
-      // todo: Tasks.start(session);
+      startTasks(session);
     }
 
     if (status === 'break') {
       // todo: notify('break')
       // todo: Tasks.stop(session)
+      stopTasks(session);
     }
 
     if (status === 'done') {
       session.end = new Date();
       // todo: notify(done) emails etc
-      // todo: Tasks.stop(session)
+      stopTasks(session);
     }
 
     session.status = status;
