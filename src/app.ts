@@ -26,7 +26,6 @@ const main = async () => {
     });
 
     app.listen({ port }, () => {
-        console.log(`🚀 Server ready and listening at ==> http://localhost:${port}`);
         console.log(`🚀 Apollo server ==> http://localhost:${port}${apollo.graphqlPath}`);
     })
 };
