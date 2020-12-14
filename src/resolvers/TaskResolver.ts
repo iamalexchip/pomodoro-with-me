@@ -51,13 +51,15 @@ export class TaskResolver {
         );
       }
 
-      if (previousColumn.isFocus && !targetColumn.isFocus) {
-        const lastTimeEntry = task.timesheet[task.timesheet.length - 1];
-        lastTimeEntry.end = new Date();
-      }
-      
-      if (session.status === "pomodoro" && !previousColumn.isFocus && targetColumn.isFocus) {
-        task.timesheet.push({ start: new Date() });
+      if (session.status === "pomodoro") {
+        if (previousColumn.isFocus && !targetColumn.isFocus) {
+          const lastTimeEntry = task.timesheet[task.timesheet.length - 1];
+          lastTimeEntry.end = new Date();
+        }
+        
+        if (!previousColumn.isFocus && targetColumn.isFocus) {
+          task.timesheet.push({ start: new Date() });
+        }
       }
 
       task.column = column;

@@ -1,4 +1,5 @@
 import { ApolloError } from "apollo-server-express";
+import { startTasks, stopTasks } from "../services/TaskService";
 import { Resolver, Mutation, Arg, Args } from "type-graphql";
 import { Session, SessionColumn, SessionModel } from "../entities/Session";
 import { CreateColumnArgs, UpdateColumnArgs,  DeleteColumnArgs } from "./types/ColumnTypes";
@@ -21,16 +22,17 @@ export class ColumnResolver {
     const column = session.columns.id(id);
     if (!column) throw new ApolloError('Column not found on session', 'COLUMN_NOT_FOUND');
     if (label) column.label = label;
-    if (isFocus !== undefined && column.isFocus !== isFocus) {
+    
+    if (session.status === "pomodoro" && isFocus !== undefined && column.isFocus !== isFocus) {
       column.isFocus = isFocus;
-      /*
+      
       if (isFocus) {
-        task.start(column.id)
+        startTasks(session, column.id);
       } else {
-        task.stop(column.id)
+        stopTasks(session, column.id);
       }
-      */
     }
+    
     if (position && column.position != position) {
       const columnToSwap = session.columns.find((sessionColumn: SessionColumn) =>
         sessionColumn.position === position);

@@ -13,11 +13,14 @@ export const findOrFail = async(id: string) => {
 }
 
 export const startTasks = async(session: any, column?: string) => {
-  column;
-  const tasks = await TaskModel.find({ session: session.id });
+  let taskFilter: { session: any, column?: string } = { session: session.id };
+  if (column) taskFilter.column = column;
+  const tasks = await TaskModel.find(taskFilter);
 
+  console.log("STOPPING TASKS")
   tasks.map(async(task: any) => {
-    if (session.columns.id(task.column).isFocus) {
+    console.log({task})
+    if (column || session.columns.id(task.column).isFocus) {
       task.timesheet.push({ start: new Date() });
       await task.save();
     }
@@ -25,11 +28,14 @@ export const startTasks = async(session: any, column?: string) => {
 }
 
 export const stopTasks = async(session: any, column?: string) => {
-  column;
-  const tasks = await TaskModel.find({ session: session.id });
+  let taskFilter: { session: any, column?: string } = { session: session.id };
+  if (column) taskFilter.column = column;
+  const tasks = await TaskModel.find(taskFilter);
   
+  console.log("STOPPING TASKS")
   tasks.map(async(task: any) => {
-    if (session.columns.id(task.column).isFocus) {
+    console.log({task})
+    if (column || session.columns.id(task.column).isFocus) {
       const lastTimeEntry = task.timesheet[task.timesheet.length - 1];
       lastTimeEntry.end = new Date();
       await task.save();
