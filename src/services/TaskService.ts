@@ -1,5 +1,4 @@
 import { ApolloError } from "apollo-server-express";
-import { Session } from "inspector";
 import { TaskModel } from "../entities/Task";
 
 export const findOrFail = async(id: string) => {
@@ -7,7 +6,7 @@ export const findOrFail = async(id: string) => {
   if(!task) throw new ApolloError('Task not found', 'TASK_NOT_FOUND');
   if(!task.session.name) throw new ApolloError('Session not found', 'ORPHANED_TASK');
 
-  // todo: check if has can edit task
+  // todo: check if can edit task
 
   return task;
 }
@@ -17,9 +16,7 @@ export const startTasks = async(session: any, column?: string) => {
   if (column) taskFilter.column = column;
   const tasks = await TaskModel.find(taskFilter);
 
-  console.log("STOPPING TASKS")
   tasks.map(async(task: any) => {
-    console.log({task})
     if (column || session.columns.id(task.column).isFocus) {
       task.timesheet.push({ start: new Date() });
       await task.save();
@@ -32,9 +29,7 @@ export const stopTasks = async(session: any, column?: string) => {
   if (column) taskFilter.column = column;
   const tasks = await TaskModel.find(taskFilter);
   
-  console.log("STOPPING TASKS")
   tasks.map(async(task: any) => {
-    console.log({task})
     if (column || session.columns.id(task.column).isFocus) {
       const lastTimeEntry = task.timesheet[task.timesheet.length - 1];
       lastTimeEntry.end = new Date();

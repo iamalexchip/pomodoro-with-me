@@ -3,7 +3,7 @@ import { prop as Property, getModelForClass, Ref } from "@typegoose/typegoose";
 import { Session } from "./Session";
 
 @ObjectType({ description: "The Session column model" })
-export class TaskTimesheet {
+export class TimeEntry {
   @Field(() => ID)
   id: number;
   
@@ -34,9 +34,9 @@ export class Task {
   @Property({ required: true })
   column: string;
 
-  @Field(_type => [TaskTimesheet])
-  @Property({ type: [TaskTimesheet] })
-  timesheet: TaskTimesheet[]
+  @Field(_type => [TimeEntry])
+  @Property({ type: [TimeEntry] })
+  timesheet: TimeEntry[]
 
   @Field()
   createAt: Date

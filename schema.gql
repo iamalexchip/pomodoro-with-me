@@ -60,13 +60,13 @@ type Task {
   createAt: DateTime!
   id: ID!
   session: Session
-  timesheet: [TaskTimesheet!]!
+  timesheet: [TimeEntry!]!
   title: String!
   updateAt: DateTime!
 }
 
 """The Session column model"""
-type TaskTimesheet {
+type TimeEntry {
   end: DateTime
   id: ID!
   start: DateTime
