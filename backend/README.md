@@ -3,13 +3,19 @@
 ## Setup
 
 Install dependancies
-`yarn install`
+```
+yarn install
+```
 
 Start the server
-`yarn start`
+```
+yarn start
+```
 
 To work in dev mode run the following command. Server will automatically reload after changes
-`yarn dev`
+```
+yarn dev
+```
 
 ## Configuration
 
