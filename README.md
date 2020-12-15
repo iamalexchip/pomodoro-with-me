@@ -5,25 +5,31 @@ Pomodoro with me is an app for creating live pomodoro sessions online.
 
 ## Setup
 
-Install dependancies
-`yarn install && cd client && yarn install`
+If you haven't already installed dependancies in the project root run the following command
+`yarn install`
 
-Start the server
+Install backend dependancies, see backend docs
+
+Build the app
+`yarn build`
+
+Start the app
 `yarn start`
 
-To work in dev mode run the following command. Server will automatically reload after changes
-`yarn dev`
-
-Build the frontend.
-`yarn build`
+Serve the app. This will start both the react app and backend in dev mode. Hot relaoding is enabled for both
+`yarn serve`
 
 ## Configuration
 
 ```
-DATABASE_URL =
+API_URL =
 ```
 
-### DATABASE_URL
-This is the Mongo database url. The default value is `mongodb://localhost:27017/pomodoro`
+### API_URL
 
-> For backend configurations documentation see here
+The graphql api url. This value defaults to `http://localhost:5000/graphql`. There isn't a need to set it when developing locally unless the backend is on another url
+
+> If you are going to work in the backend see configurations documentation here
+
+## todo
+- Add scripts doc
