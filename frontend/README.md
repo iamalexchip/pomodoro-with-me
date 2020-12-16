@@ -1,14 +1,6 @@
-# Pomorodo With Me
+# Pomorodo With Me - Frontend
 
-## Description
-Pomodoro with me is an app for creating live pomodoro sessions online.
-
-## Setup
-
-If you haven't already installed dependancies in the project root run the following command
-```
-yarn install
-```
+## Usage
 
 Build the app
 ```
