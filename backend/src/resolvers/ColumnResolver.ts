@@ -1,6 +1,6 @@
 import { ApolloError } from "apollo-server-express";
 import { startTasks, stopTasks } from "../services/TaskService";
-import { Resolver, Mutation, Arg, Args } from "type-graphql";
+import { Resolver, Mutation, Arg, Args, FieldResolver, Root, ResolverInterface } from "type-graphql";
 import {
   Session,
   SessionColumn,
@@ -10,10 +10,9 @@ import {
   DeleteColumnArgs
 } from "common";
 
-@Resolver()
-export class ColumnResolver {
-
-  @Mutation(() => Session)
+@Resolver(of => SessionColumn)
+export class ColumnResolver  {
+  @Mutation(_returns => Session)
   async createColumn(@Args() { session: name, label }: CreateColumnArgs) {
     const session = await SessionModel.findOne({ name });
     if(!session) throw new ApolloError('Session not found', 'SESSION_NOT_FOUND');
@@ -21,7 +20,7 @@ export class ColumnResolver {
     return await session.save();
   };
 
-  @Mutation(() => Session)
+  @Mutation(_returns => Session)
   async updateColumn(@Args() { session: name, id, label, position, isFocus }: UpdateColumnArgs) {
     const session = await SessionModel.findOne({ name });
     if(!session) throw new ApolloError('Session not found', 'SESSION_NOT_FOUND');

@@ -18,7 +18,7 @@ export class SessionResolver {
     return await SessionService.findOrFail({ name });
   };
 
-  @Mutation(() => Session)
+  @Mutation(_returns => Session)
   async createSession(@Arg("name") name: string) {
     const sessionExists = await SessionModel.findOne({ name });
     if(sessionExists) throw new ApolloError('Session already exists', 'DUPLICATE_SESSION');
@@ -35,7 +35,7 @@ export class SessionResolver {
     return await session.save();
   };
 
-  @Mutation(() => Session)
+  @Mutation(_returns => Session)
   async updateSession(@Args() { name, isModerated, isOpen }: UpdateSessionArgs) {
     const session = await SessionService.findOrFail({ name });
     session.isModerated = (isModerated === undefined) ? session.isModerated : isModerated;
@@ -44,7 +44,7 @@ export class SessionResolver {
     return await session.save();
   };
 
-  @Mutation(() => Session)
+  @Mutation(_returns => Session)
   async toggleSession(@Args() { name, status }: ToggleSessionArgs) {
     const session = await SessionService.findOrFail({ name });
 
@@ -93,7 +93,7 @@ export class SessionResolver {
   };
 
   @Mutation(_returns => Boolean, { nullable: true })
-  async deleteSession(@Arg("name") name: string){
+  async deleteSession(@Arg("name") name: string) {
     await SessionService.findOrFail({ name });
     await SessionModel.deleteOne({ name });
     return true;
