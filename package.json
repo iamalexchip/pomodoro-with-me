@@ -9,10 +9,9 @@
     "common": "yarn workspace common",
     "backend": "yarn workspace backend",
     "frontend": "yarn workspace frontend",
-    "serve": "concurrently \"yarn frontend start\" \"wait-on http://localhost:3000 && yarn backend dev\""
+    "serve": "concurrently \"yarn common dev\" \"yarn backend dev\" \"yarn frontend start\" -n \"common,backend,frontend\""
   },
   "devDependencies": {
-    "concurrently": "^5.3.0",
-    "wait-on": "^5.2.0"
+    "concurrently": "^5.3.0"
   }
 }

@@ -3,9 +3,9 @@ import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 
 // resolvers
-import { SessionResolver } from "./resolvers/SessionResolver";
-import { ColumnResolver } from "./resolvers/ColumnResolver";
-import { TaskResolver } from "./resolvers/TaskResolver";
+import { SessionResolver } from "../resolvers/SessionResolver";
+import { ColumnResolver } from "../resolvers/ColumnResolver";
+import { TaskResolver } from "../resolvers/TaskResolver";
 
 export const server = async() => {
   const schema = await buildSchema({

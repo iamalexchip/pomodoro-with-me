@@ -2,7 +2,7 @@ import Express from "express";
 import path from "path";
 import "reflect-metadata";
 import { connect } from "mongoose";
-import { server } from "./apollo";
+import { server as apolloServer } from "./services/ApolloService";
 import config from "./config";
 
 const port : string|number = process.env.PORT || 5000;
@@ -13,7 +13,7 @@ const main = async () => {
     await mongoose.connection;
     
     const app = Express();
-    const apollo = await server();
+    const apollo = await apolloServer();
     apollo.applyMiddleware({app});
 
     // Serve static files from the React app
