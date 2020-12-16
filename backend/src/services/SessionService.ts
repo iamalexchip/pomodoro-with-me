@@ -1,5 +1,5 @@
 import { ApolloError } from "apollo-server-express";
-import { SessionModel } from "../entities/Session";
+import { SessionModel } from "common";
 
 export const findOrFail = async(filter: { id?: string, name?: string }) => {
   const session = await SessionModel.findOne(filter);

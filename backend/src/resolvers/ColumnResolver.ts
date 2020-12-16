@@ -1,8 +1,14 @@
 import { ApolloError } from "apollo-server-express";
 import { startTasks, stopTasks } from "../services/TaskService";
 import { Resolver, Mutation, Arg, Args } from "type-graphql";
-import { Session, SessionColumn, SessionModel } from "../entities/Session";
-import { CreateColumnArgs, UpdateColumnArgs,  DeleteColumnArgs } from "./types/ColumnTypes";
+import {
+  Session,
+  SessionColumn,
+  SessionModel,
+  CreateColumnArgs,
+  UpdateColumnArgs,
+  DeleteColumnArgs
+} from "common";
 
 @Resolver()
 export class ColumnResolver {

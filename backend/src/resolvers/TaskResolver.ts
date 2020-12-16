@@ -1,6 +1,6 @@
-import { Task, TaskModel } from "../entities/Task";
+import { Task, TaskModel } from "common";
 import { Resolver, Mutation, Arg, Query, Args } from "type-graphql";
-import { CreateTaskArgs, UpdateTaskArgs } from "./types/TaskTypes";
+import { CreateTaskArgs, UpdateTaskArgs } from "common";
 import * as SessionService from "../services/SessionService";
 import * as TaskService from "../services/TaskService";
 import { ApolloError } from "apollo-server-express";

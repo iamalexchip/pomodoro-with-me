@@ -1,12 +1,16 @@
 import { gql, useQuery } from '@apollo/client';
 import { useParams } from "react-router-dom";
-import { ITaskModel } from "../../types/models";
+import { ISessionModelm ITaskModel } from "../../../types/models";
+import { SessionTemplate } from "../../templates/SessionTemplate";
+import { DragDropContext } from "react-beautiful-dnd";
+import TaskList from "./TaskList";
 
 interface IParams {
   sessionId: string
 }
 
 interface IQuery {
+  session: ISessionModel
   tasks: ITaskModel[]
 }
 
@@ -18,6 +22,23 @@ const SessionTasksRoute = () => {
   const { sessionId } = useParams<IParams>();
   const GET_TASKS = gql`
     query TasksQuery($session: String!) {
+      {
+        session: getSession(name: $session) {
+          name
+          status
+          isModerated
+          isOpen
+          start
+          end,
+          columns {
+            id
+            position
+            isFocus
+            label
+          }
+        }
+      }
+
       tasks: listTasks(session: $session) {
         id
         title
@@ -25,9 +46,6 @@ const SessionTasksRoute = () => {
         timesheet {
           start
           end
-        }
-        session {
-          name
         }
       }
     }
@@ -40,16 +58,19 @@ const SessionTasksRoute = () => {
   if (error) return <div>Error fetching data</div>;
   if (loading || !data) return <div>Loading tasks...</div>;
   
-  const { tasks } = data;
+  const { tasks } = data;  
+  const onDragEnd = (result: any) => {
+
+  }
 
   return (
-    <div><h3>Tasks</h3>
-      <ul>
-        {tasks.map((task) => 
-          <li key={task.id}>{task.title}</li>
-        )}
-      </ul>
-    </div>
+    <SessionTemplate>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="lists">
+          <TaskList column={{ id: "fedfe" }} />
+        </div>
+      </DragDropContext>
+    </SessionTemplate>
   )
 }
 

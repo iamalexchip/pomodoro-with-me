@@ -1,0 +1,17 @@
+{
+  "name": "common",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Alex <iamalexchip@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -b"
+},
+  "dependencies": {
+    "@typegoose/typegoose": "^7.4.5",
+    "mongoose": "^5.11.7",
+    "type-graphql": "^1.1.1",
+    "typescript": "^4.1.2"
+  }
+}

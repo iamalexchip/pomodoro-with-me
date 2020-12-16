@@ -1,5 +1,5 @@
 {
-  "name": "pomodoro",
+  "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:iamalexchip/pomodoro-server.git",

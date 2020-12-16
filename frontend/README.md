@@ -34,7 +34,7 @@ API_URL =
 
 ### API_URL
 
-The graphql api url. This value defaults to `http://localhost:5000/graphql`. There isn't a need to set it when developing locally unless the backend is on another url
+The graphql api url. This value defaults to `http://localhost:5000/graphql`. There isn't a need to set it when developing locally unless the backend is on another url.
 
 > If you are going to work in the backend see configurations documentation here
 

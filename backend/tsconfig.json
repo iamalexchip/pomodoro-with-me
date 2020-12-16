@@ -33,5 +33,6 @@
   },
   "include": [
       "src/**/*", "./src/**/*.ts", "./app/**/*.tsx"
-  ]
+  ],
+  "references": [{ "path": "../common" }]
 }

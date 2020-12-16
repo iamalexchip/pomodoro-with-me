@@ -1,5 +1,5 @@
 import { Field, ArgsType } from "type-graphql";
-import { Session, SessionStatus } from "../../entities/Session";
+import { Session, SessionStatus } from "../entities/SessionEntity";
 
 @ArgsType()
 export class UpdateSessionArgs implements Partial<Session> {

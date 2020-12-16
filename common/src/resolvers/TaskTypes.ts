@@ -1,5 +1,4 @@
 import { Field, ArgsType, InputType } from "type-graphql";
-import { Task } from "../../entities/Task";
 
 @ArgsType()
 export class CreateTaskArgs {

@@ -24,4 +24,4 @@ DATABASE_URL =
 ```
 
 ### DATABASE_URL
-This is the Mongo database url. The default value is `mongodb://localhost:27017/pomodoro`
+The Mongo database url. The default value is `mongodb://localhost:27017/pomodoro`

@@ -1,5 +1,5 @@
 import { ApolloError } from "apollo-server-express";
-import { TaskModel } from "../entities/Task";
+import { TaskModel } from "common";
 
 export const findOrFail = async(id: string) => {
   const task = await TaskModel.findById(id).populate('session');

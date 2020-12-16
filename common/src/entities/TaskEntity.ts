@@ -1,6 +1,6 @@
 import { ObjectType, Field, ID } from "type-graphql";
 import { prop as Property, getModelForClass, Ref } from "@typegoose/typegoose";
-import { Session } from "./Session";
+import { Session } from "./SessionEntity";
 
 @ObjectType({ description: "The Session column model" })
 export class TimeEntry {

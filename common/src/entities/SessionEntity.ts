@@ -1,6 +1,5 @@
 import { ObjectType, Field, ID, registerEnumType } from "type-graphql";
 import { prop as Property, getModelForClass, Ref } from "@typegoose/typegoose";
-import { Task } from "./Task";
 
 export enum SessionStatus {
   unbegun =  'unbegun',

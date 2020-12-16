@@ -1,7 +1,7 @@
 import { ApolloError } from "apollo-server-express";
 import { Resolver, Mutation, Arg, Query, Args } from "type-graphql";
-import { Session, SessionModel, SessionStatus } from "../entities/Session";
-import { UpdateSessionArgs, ToggleSessionArgs } from "./types/SessionTypes";
+import { Session, SessionModel } from "common";
+import { UpdateSessionArgs, ToggleSessionArgs } from "common";
 import * as SessionService from "../services/SessionService";
 import { clearTasks, startTasks, stopTasks, } from "../services/TaskService";
 
