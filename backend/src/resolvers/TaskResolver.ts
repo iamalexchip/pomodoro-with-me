@@ -13,7 +13,7 @@ export class TaskResolver {
     return await TaskModel.find({ session: session.id }).populate("session");
   };
 
-  @Mutation(() => Task)
+  @Mutation(_returns => Task)
   async createTask(@Args() { session: name, title, column }: CreateTaskArgs) {
     const session = await SessionService.findOrFail({ name });
     const task = new TaskModel(
@@ -33,7 +33,7 @@ export class TaskResolver {
     return task;
   };
 
-  @Mutation(() => Task)
+  @Mutation(_returns => Task)
   async updateTask(@Args() { id, title, column }: UpdateTaskArgs) {
     const task = await TaskService.findOrFail(id);
     const session = task.session;
