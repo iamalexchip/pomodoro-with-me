@@ -2122,7 +2122,7 @@
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "12c3b6e51746fc2793c416135dfa8ffca720016678f07c84cd294abda463c0f1",
+        "version": "e217b2195b2b41f8885996b508b781f5a9d5e8548242cd5f9ec7fd098569b678",
         "signature": "2e776d7c8eeddbbe2360d0ef0d7970cde585018fed6e730e6f06585c8e5763f4",
         "affectsGlobalScope": false
       },
@@ -2825,6 +2825,7 @@
       "outDir": "./dist",
       "rootDir": "./src",
       "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
       "skipLibCheck": true,
       "configFilePath": "./tsconfig.json"
     },

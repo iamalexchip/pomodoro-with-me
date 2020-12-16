@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import { useParams } from "react-router-dom";
-import { ISessionModelm ITaskModel } from "../../../types/models";
+import { Session, Task } from "common";
 import { SessionTemplate } from "../../templates/SessionTemplate";
 import { DragDropContext } from "react-beautiful-dnd";
 import TaskList from "./TaskList";
@@ -10,8 +10,8 @@ interface IParams {
 }
 
 interface IQuery {
-  session: ISessionModel
-  tasks: ITaskModel[]
+  session: Session;
+  tasks: Task[];
 }
 
 interface IQueryVars {
@@ -58,7 +58,7 @@ const SessionTasksRoute = () => {
   if (error) return <div>Error fetching data</div>;
   if (loading || !data) return <div>Loading tasks...</div>;
   
-  const { tasks } = data;  
+  //const { tasks } = data;  
   const onDragEnd = (result: any) => {
 
   }

@@ -6,8 +6,9 @@
   "author": "Alex <iamalexchip@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -b"
-},
+    "build": "tsc -b",
+    "dev": "nodemon"
+  },
   "dependencies": {
     "@typegoose/typegoose": "^7.4.5",
     "mongoose": "^5.11.7",
