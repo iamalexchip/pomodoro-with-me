@@ -2097,13 +2097,18 @@
         "affectsGlobalScope": false
       },
       "./src/entities/SessionEntity.ts": {
-        "version": "750582029e294bee6b11b1049eeceab06b648b975243b8eaf7ab04c848aea65c",
-        "signature": "4f974bfabad86ee251a89e4de479ac88f89924bac02f235c37bbaab4edba224d",
+        "version": "dfd97430b9489a088a82421e5452327b938f6d75e83afe2225e997ed70b86dbd",
+        "signature": "37dc0c61e4e702582b601445178b47006965febc2a3f8ad2a4dc6a53843c6fcd",
         "affectsGlobalScope": false
       },
       "./src/entities/TaskEntity.ts": {
-        "version": "33c8bdd3552d4adb93adcec8167e1ce0a562e4e1d6de57757140b41e0ea98efc",
-        "signature": "e8a42f64a5eb324afd8a372dc35314778b5581ab28fa60ecb152f925aa3a5b1f",
+        "version": "f284daeaccf18540798b10a28b73682cfe02ceba411de85d832cb62db02db6fd",
+        "signature": "5a6fa8ed7b55940d518815d403c9adb6f364ffc129d41fd1953a09b183290275",
+        "affectsGlobalScope": false
+      },
+      "./src/utils/reorderTasks.ts": {
+        "version": "367acd6ffa8d1da3aeef2b4dc90ca51efcb3b53076257657807a1142f8a3047d",
+        "signature": "d51a5a55cf7a48bf1d9b45c733eeb3b6ac1e623de943e5a0c858da34152aa0e8",
         "affectsGlobalScope": false
       },
       "./src/resolvers/SessionTypes.ts": {
@@ -2122,8 +2127,8 @@
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "e217b2195b2b41f8885996b508b781f5a9d5e8548242cd5f9ec7fd098569b678",
-        "signature": "2e776d7c8eeddbbe2360d0ef0d7970cde585018fed6e730e6f06585c8e5763f4",
+        "version": "b98fb46e3400f795e54a89772ea03b94051cdc87f7d4efc4e74957ae9ae55e4a",
+        "signature": "190c1108fe0bd07eacc056d390cf3005001e52d3b8e1b64a32e797ef7223ddd0",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/accepts/index.d.ts": {
@@ -2844,7 +2849,8 @@
         "./src/entities/TaskEntity.ts",
         "./src/resolvers/ColumnTypes.ts",
         "./src/resolvers/SessionTypes.ts",
-        "./src/resolvers/TaskTypes.ts"
+        "./src/resolvers/TaskTypes.ts",
+        "./src/utils/reorderTasks.ts"
       ],
       "./src/resolvers/ColumnTypes.ts": [
         "../node_modules/type-graphql/dist/index.d.ts"
@@ -2855,6 +2861,9 @@
       ],
       "./src/resolvers/TaskTypes.ts": [
         "../node_modules/type-graphql/dist/index.d.ts"
+      ],
+      "./src/utils/reorderTasks.ts": [
+        "./src/entities/TaskEntity.ts"
       ],
       "../node_modules/@babel/parser/typings/babel-parser.d.ts": [
         "../node_modules/@babel/types/lib/index.d.ts"
@@ -4918,10 +4927,14 @@
         "./src/entities/TaskEntity.ts",
         "./src/resolvers/ColumnTypes.ts",
         "./src/resolvers/SessionTypes.ts",
-        "./src/resolvers/TaskTypes.ts"
+        "./src/resolvers/TaskTypes.ts",
+        "./src/utils/reorderTasks.ts"
       ],
       "./src/resolvers/SessionTypes.ts": [
         "./src/entities/SessionEntity.ts"
+      ],
+      "./src/utils/reorderTasks.ts": [
+        "./src/entities/TaskEntity.ts"
       ],
       "../node_modules/@babel/parser/typings/babel-parser.d.ts": [
         "../node_modules/@babel/types/lib/index.d.ts"
@@ -6982,6 +6995,7 @@
       "./src/resolvers/ColumnTypes.ts",
       "./src/resolvers/SessionTypes.ts",
       "./src/resolvers/TaskTypes.ts",
+      "./src/utils/reorderTasks.ts",
       "../node_modules/@babel/parser/typings/babel-parser.d.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
       "../node_modules/@typegoose/typegoose/lib/defaultClasses.d.ts",

@@ -5,7 +5,7 @@ import { Session } from "./SessionEntity";
 @ObjectType({ description: "The Session column model" })
 export class TimeEntry {
   @Field(() => ID)
-  id: number;
+  id: string;
   
   @Field({ nullable: true })
   @Property({ nullable: true, default: null })
@@ -18,9 +18,8 @@ export class TimeEntry {
 
 @ObjectType({ description: "The Task model" })
 export class Task {
-
   @Field(() => ID)
-  id: number;
+  id: string;
 
   @Field()
   @Property({ required: true, default: "" })

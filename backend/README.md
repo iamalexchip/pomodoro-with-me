@@ -7,6 +7,8 @@ Install dependancies
 yarn install
 ```
 
+## Commands
+
 Start the server
 ```
 yarn start

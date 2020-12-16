@@ -13,7 +13,7 @@ registerEnumType(SessionStatus, { name: "SessionStatus" });
 @ObjectType({ description: "The Session column model" })
 export class SessionColumn {
   @Field(() => ID)
-  id: number;
+  id: string;
   
   @Field()
   @Property({ required: true })
@@ -32,7 +32,7 @@ export class SessionColumn {
 export class Session {
 
   @Field(() => ID)
-  id: number;
+  id: string;
 
   @Field()
   @Property({ required: true, unique: true })
