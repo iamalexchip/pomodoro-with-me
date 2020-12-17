@@ -19,8 +19,8 @@ const TaskList: FC<CiTaskList> = ({ column, tasks  }) => {
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            {tasks.map((task, index) =>
-              <TaskCard key={task.id} index={index} task={task} />
+            {tasks.map((task) =>
+              <TaskCard key={task.id} task={task} />
             )}
             {provided.placeholder}
           </div>

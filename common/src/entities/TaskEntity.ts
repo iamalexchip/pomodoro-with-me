@@ -33,6 +33,10 @@ export class Task {
   @Property({ required: true })
   column: string;
 
+  @Field()
+  @Property({ required: true })
+  position: number;
+
   @Field(_type => [TimeEntry])
   @Property({ type: [TimeEntry] })
   timesheet: TimeEntry[]

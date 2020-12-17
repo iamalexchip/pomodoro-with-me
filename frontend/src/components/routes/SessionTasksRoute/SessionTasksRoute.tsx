@@ -13,7 +13,7 @@ import {
 } from "../../../constants/graphql";
 import { useEffect } from "react";
 import { useState } from "react";
-import { reorderTasks } from "common";
+import { filtertasks, reorderTasks } from '../../../utils/taskUtils';
 
 interface IParams {
   sessionId: string
@@ -50,7 +50,11 @@ const SessionTasksRoute = () => {
     if (fetchSessionTasksError) alert(fetchSessionTasksError);
   }, [updateTaskError, fetchSessionTasksError]);
 
+  // Loading screen 
   if (!session || !tasks) return <div>Loading tasks...</div>;
+  // End Loading screen
+
+  const { columns } = session;
   
   const onDragEnd = (result: DropResult) => {
     const { source, destination, draggableId } = result;
@@ -59,29 +63,28 @@ const SessionTasksRoute = () => {
     if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
     const [taskId, columnId, position] = [draggableId, destination.droppableId, destination.index];
-    const reorderedTasks = reorderTasks({ tasks, taskId, columnId, position });
-    setTasks(reorderedTasks);
+    setTasks(reorderTasks({ tasks, taskId, columnId, position }));
 
     /*
     updateTask({
       variables: {
         id: taskId,
         column: columnId,
-        //position
+        position
       }
     });
-    */
+    //*/
   }
 
   return (
     <SessionTemplate>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="lists">
-          {session.columns.map((column) =>
+          {columns.map((column) =>
             <TaskList
               key={column.id}
               column={column}
-              tasks={tasks.filter((task) => task.column === column.id)}
+              tasks={filtertasks(tasks.filter((task) => task.column === column.id))}
             />
           )}
         </div>

@@ -4,11 +4,10 @@ import { Task } from "common";
 
 interface CiTaskCard {
   task: Task;
-  index: number;
 }
 
-const TaskCard: FC<CiTaskCard> = ({ task, index }) => (
-  <Draggable draggableId={task.id} index={index}>
+const TaskCard: FC<CiTaskCard> = ({ task }) => (
+  <Draggable draggableId={task.id} index={task.position}>
     {(provided: DraggableProvided) => (
       <div
         className="list-item"

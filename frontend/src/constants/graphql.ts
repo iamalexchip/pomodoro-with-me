@@ -33,6 +33,7 @@ export const SESSION_TASKS_ROUTE = gql`
       id
       title
       column
+      position
       timesheet {
         start
         end
@@ -46,6 +47,7 @@ export const SESSION_TASKS_ROUTE = gql`
 export interface IVARS_UPDATE_TASK {
   id: string;
   column?: string;
+  position?: number;
 }
 
 export const UPDATE_TASK = gql`

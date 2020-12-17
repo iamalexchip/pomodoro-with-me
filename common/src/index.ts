@@ -2,9 +2,6 @@
  * Common
  */
 
-// Utils
-export * from "./utils/reorderTasks";
-
 // Entities
 export * from "./entities/SessionEntity";
 export * from "./entities/TaskEntity";

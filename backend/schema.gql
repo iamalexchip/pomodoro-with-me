@@ -18,7 +18,7 @@ type Mutation {
   toggleSession(name: String!, status: SessionStatus!): Session!
   updateColumn(id: String!, isFocus: Boolean, label: String, position: Float, session: String!): Session!
   updateSession(isModerated: Boolean!, isOpen: Boolean!, name: String!): Session!
-  updateTask(column: String, id: String!, title: String): Task!
+  updateTask(column: String, id: String!, position: String, title: String): Task!
 }
 
 type Query {
@@ -59,6 +59,7 @@ type Task {
   column: String!
   createAt: DateTime!
   id: ID!
+  position: Float!
   session: Session
   timesheet: [TimeEntry!]!
   title: String!

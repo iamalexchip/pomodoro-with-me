@@ -22,4 +22,7 @@ export class UpdateTaskArgs {
 
   @Field({ nullable: true })
   column?: string;
+
+  @Field({ nullable: true })
+  position?: string;
 }

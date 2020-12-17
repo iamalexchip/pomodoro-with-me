@@ -34,7 +34,7 @@ export class TaskResolver {
   };
 
   @Mutation(_returns => Task)
-  async updateTask(@Args() { id, title, column }: UpdateTaskArgs) {
+  async updateTask(@Args() { id, title, column, position }: UpdateTaskArgs) {
     const task = await TaskService.findOrFail(id);
     const session = task.session;
 
@@ -60,6 +60,16 @@ export class TaskResolver {
         if (!previousColumn.isFocus && targetColumn.isFocus) {
           task.timesheet.push({ start: new Date() });
         }
+      } else {// column wasn't changed
+        /*if (position && task.position == position) {
+          const taskToSwap = session.tas.find((task: T) =>
+            task.position === position);
+            
+          if (!taskToSwap) throw new ApolloError('Invalid target position', 'COLUMN_MOVE_ERROR');
+
+          taskToSwap.position = task.position;
+          task.position = position;
+        }*/
       }
 
       task.column = column;
