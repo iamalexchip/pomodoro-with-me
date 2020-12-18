@@ -63,7 +63,7 @@ const SessionTasksRoute = () => {
     if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
     const [taskId, columnId, position] = [draggableId, destination.droppableId, destination.index];
-    setTasks(reorderTasks({ tasks, taskId, columnId, position }));
+    setTasks(reorderTasks(tasks, taskId, columnId, position));
 
     /*
     updateTask({
