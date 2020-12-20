@@ -51,11 +51,12 @@ export interface IVARS_UPDATE_TASK {
 }
 
 export const UPDATE_TASK = gql`
-  mutation updateTask($id: String!, $column: String) {
-    updateTask(id: $id column: $column) {
+  mutation updateTask($id: String!, $column: String, $position: Float) {
+    updateTask(id: $id column: $column, position: $position ) {
       id
       title
       column
+      position
     }
   }
 `;

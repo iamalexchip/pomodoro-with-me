@@ -2102,13 +2102,8 @@
         "affectsGlobalScope": false
       },
       "./src/entities/TaskEntity.ts": {
-        "version": "f284daeaccf18540798b10a28b73682cfe02ceba411de85d832cb62db02db6fd",
-        "signature": "5a6fa8ed7b55940d518815d403c9adb6f364ffc129d41fd1953a09b183290275",
-        "affectsGlobalScope": false
-      },
-      "./src/utils/reorderTasks.ts": {
-        "version": "367acd6ffa8d1da3aeef2b4dc90ca51efcb3b53076257657807a1142f8a3047d",
-        "signature": "d51a5a55cf7a48bf1d9b45c733eeb3b6ac1e623de943e5a0c858da34152aa0e8",
+        "version": "0295e3c10cf29908f157664a5997f3009b57b8dc2fae55d9e292c2c47120f4aa",
+        "signature": "136a86c0273f72b90ae9491c337fa9a78745e3099c722da545771444e4de4066",
         "affectsGlobalScope": false
       },
       "./src/resolvers/SessionTypes.ts": {
@@ -2122,13 +2117,13 @@
         "affectsGlobalScope": false
       },
       "./src/resolvers/TaskTypes.ts": {
-        "version": "d761ae2626b8dd75e63088977a6c10755e36bc9a232c06f701d54d3173310e08",
-        "signature": "c87a94eb7d264a6fcd733e9bc9bdc44f4e73b86deb58561737c003ee65a3b7ba",
+        "version": "95c74f91649e3f647333b575253e79477a5b3e0150fe409b543ec000a648f30e",
+        "signature": "47440138efaf0798d2c5b94542f505d4bc84e8a337d20b61ab23a4dcebd8e862",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "b98fb46e3400f795e54a89772ea03b94051cdc87f7d4efc4e74957ae9ae55e4a",
-        "signature": "190c1108fe0bd07eacc056d390cf3005001e52d3b8e1b64a32e797ef7223ddd0",
+        "version": "9753bedae9722d726e66d61bbc78aebca39e9139704ae384e1cec8e9d610b837",
+        "signature": "ae959d7d0181086531c35819591b50a262cc677e742be97d0075f598b686a59e",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/accepts/index.d.ts": {
@@ -2406,7 +2401,7 @@
         "signature": "e8465811693dfe4e96ef2b3dffda539d6edfe896961b7af37b44db2c0e48532b",
         "affectsGlobalScope": false
       },
-      "../node_modules/form-data/index.d.ts": {
+      "../node_modules/@types/node-fetch/node_modules/form-data/index.d.ts": {
         "version": "cbb7029e32a6a72178cda8baa9129b1ee6d1d779a35e46c780e38b4909d42a89",
         "signature": "cbb7029e32a6a72178cda8baa9129b1ee6d1d779a35e46c780e38b4909d42a89",
         "affectsGlobalScope": false
@@ -2849,8 +2844,7 @@
         "./src/entities/TaskEntity.ts",
         "./src/resolvers/ColumnTypes.ts",
         "./src/resolvers/SessionTypes.ts",
-        "./src/resolvers/TaskTypes.ts",
-        "./src/utils/reorderTasks.ts"
+        "./src/resolvers/TaskTypes.ts"
       ],
       "./src/resolvers/ColumnTypes.ts": [
         "../node_modules/type-graphql/dist/index.d.ts"
@@ -2861,9 +2855,6 @@
       ],
       "./src/resolvers/TaskTypes.ts": [
         "../node_modules/type-graphql/dist/index.d.ts"
-      ],
-      "./src/utils/reorderTasks.ts": [
-        "./src/entities/TaskEntity.ts"
       ],
       "../node_modules/@babel/parser/typings/babel-parser.d.ts": [
         "../node_modules/@babel/types/lib/index.d.ts"
@@ -3075,10 +3066,15 @@
       ],
       "../node_modules/@types/node-fetch/index.d.ts": [
         "../node_modules/@types/node-fetch/externals.d.ts",
+        "../node_modules/@types/node-fetch/node_modules/form-data/index.d.ts",
         "../node_modules/@types/node/http.d.ts",
         "../node_modules/@types/node/index.d.ts",
-        "../node_modules/@types/node/url.d.ts",
-        "../node_modules/form-data/index.d.ts"
+        "../node_modules/@types/node/url.d.ts"
+      ],
+      "../node_modules/@types/node-fetch/node_modules/form-data/index.d.ts": [
+        "../node_modules/@types/node/http.d.ts",
+        "../node_modules/@types/node/index.d.ts",
+        "../node_modules/@types/node/stream.d.ts"
       ],
       "../node_modules/@types/node/base.d.ts": [
         "../node_modules/@types/node/assert.d.ts",
@@ -4064,11 +4060,6 @@
       ],
       "../node_modules/class-validator/types/validation/ValidatorConstraintInterface.d.ts": [
         "../node_modules/class-validator/types/validation/ValidationArguments.d.ts"
-      ],
-      "../node_modules/form-data/index.d.ts": [
-        "../node_modules/@types/node/http.d.ts",
-        "../node_modules/@types/node/index.d.ts",
-        "../node_modules/@types/node/stream.d.ts"
       ],
       "../node_modules/graphql-query-complexity/dist/QueryComplexity.d.ts": [
         "../node_modules/graphql/index.d.ts"
@@ -4927,14 +4918,10 @@
         "./src/entities/TaskEntity.ts",
         "./src/resolvers/ColumnTypes.ts",
         "./src/resolvers/SessionTypes.ts",
-        "./src/resolvers/TaskTypes.ts",
-        "./src/utils/reorderTasks.ts"
+        "./src/resolvers/TaskTypes.ts"
       ],
       "./src/resolvers/SessionTypes.ts": [
         "./src/entities/SessionEntity.ts"
-      ],
-      "./src/utils/reorderTasks.ts": [
-        "./src/entities/TaskEntity.ts"
       ],
       "../node_modules/@babel/parser/typings/babel-parser.d.ts": [
         "../node_modules/@babel/types/lib/index.d.ts"
@@ -5150,6 +5137,11 @@
         "../node_modules/@types/node/index.d.ts",
         "../node_modules/@types/node/url.d.ts",
         "../node_modules/form-data/index.d.ts"
+      ],
+      "../node_modules/@types/node-fetch/node_modules/form-data/index.d.ts": [
+        "../node_modules/@types/node/http.d.ts",
+        "../node_modules/@types/node/index.d.ts",
+        "../node_modules/@types/node/stream.d.ts"
       ],
       "../node_modules/@types/node/base.d.ts": [
         "../node_modules/@types/node/assert.d.ts",
@@ -6136,11 +6128,6 @@
       "../node_modules/class-validator/types/validation/ValidatorConstraintInterface.d.ts": [
         "../node_modules/class-validator/types/validation/ValidationArguments.d.ts"
       ],
-      "../node_modules/form-data/index.d.ts": [
-        "../node_modules/@types/node/http.d.ts",
-        "../node_modules/@types/node/index.d.ts",
-        "../node_modules/@types/node/stream.d.ts"
-      ],
       "../node_modules/graphql-query-complexity/dist/QueryComplexity.d.ts": [
         "../node_modules/graphql/index.d.ts"
       ],
@@ -6995,7 +6982,6 @@
       "./src/resolvers/ColumnTypes.ts",
       "./src/resolvers/SessionTypes.ts",
       "./src/resolvers/TaskTypes.ts",
-      "./src/utils/reorderTasks.ts",
       "../node_modules/@babel/parser/typings/babel-parser.d.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
       "../node_modules/@typegoose/typegoose/lib/defaultClasses.d.ts",
@@ -7060,6 +7046,7 @@
       "../node_modules/@types/mongodb/index.d.ts",
       "../node_modules/@types/node-fetch/externals.d.ts",
       "../node_modules/@types/node-fetch/index.d.ts",
+      "../node_modules/@types/node-fetch/node_modules/form-data/index.d.ts",
       "../node_modules/@types/node/assert.d.ts",
       "../node_modules/@types/node/async_hooks.d.ts",
       "../node_modules/@types/node/base.d.ts",
@@ -7312,7 +7299,6 @@
       "../node_modules/class-validator/types/validation/ValidatorConstraintInterface.d.ts",
       "../node_modules/class-validator/types/validation/ValidatorOptions.d.ts",
       "../node_modules/csstype/index.d.ts",
-      "../node_modules/form-data/index.d.ts",
       "../node_modules/graphql-query-complexity/dist/QueryComplexity.d.ts",
       "../node_modules/graphql-query-complexity/dist/estimators/directive/index.d.ts",
       "../node_modules/graphql-query-complexity/dist/estimators/fieldExtensions/index.d.ts",

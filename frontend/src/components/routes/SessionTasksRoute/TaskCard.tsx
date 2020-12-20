@@ -15,7 +15,7 @@ const TaskCard: FC<CiTaskCard> = ({ task }) => (
         {...provided.draggableProps}
         {...provided.dragHandleProps}
       >
-        {task.title}
+        {task.position} {task.title}
       </div>
     )}
   </Draggable>

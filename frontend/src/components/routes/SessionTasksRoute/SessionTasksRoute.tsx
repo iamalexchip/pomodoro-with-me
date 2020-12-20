@@ -65,7 +65,6 @@ const SessionTasksRoute = () => {
     const [taskId, columnId, position] = [draggableId, destination.droppableId, destination.index];
     setTasks(reorderTasks(tasks, taskId, columnId, position));
 
-    /*
     updateTask({
       variables: {
         id: taskId,
@@ -73,7 +72,6 @@ const SessionTasksRoute = () => {
         position
       }
     });
-    //*/
   }
 
   return (

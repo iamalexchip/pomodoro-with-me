@@ -39,42 +39,34 @@ export class TaskResolver {
     const session = task.session;
 
     if (title) task.title = title;
+    if (column === undefined || position === undefined) return task.save();
     
-    if (column && column !== task.column) {
-      const previousColumn = session.columns.id(task.column);
-      const targetColumn = session.columns.id(column);
-      
-      if (!targetColumn) {
-        throw new ApolloError(
-          `Column [${column}] was not found in sesssion [${session.name}]`,
-          "COLUMN_NOT_FOUND"
-        );
-      }
+    await TaskService.moveTask(task.id, column, position);
 
-      if (session.status === "pomodoro") {
-        if (previousColumn.isFocus && !targetColumn.isFocus) {
-          const lastTimeEntry = task.timesheet[task.timesheet.length - 1];
-          lastTimeEntry.end = new Date();
-        }
-        
-        if (!previousColumn.isFocus && targetColumn.isFocus) {
-          task.timesheet.push({ start: new Date() });
-        }
-      } else {// column wasn't changed
-        /*if (position && task.position == position) {
-          const taskToSwap = session.tas.find((task: T) =>
-            task.position === position);
-            
-          if (!taskToSwap) throw new ApolloError('Invalid target position', 'COLUMN_MOVE_ERROR');
-
-          taskToSwap.position = task.position;
-          task.position = position;
-        }*/
-      }
-
-      task.column = column;
+    return await TaskModel.findById(id);
+    
+    const previousColumn = session.columns.id(task.column);
+    const targetColumn = session.columns.id(column);
+    
+    if (!targetColumn) {
+      throw new ApolloError(
+        `Target column [${column}] was not found in sesssion [${session.name}]`,
+        "COLUMN_NOT_FOUND"
+      );
     }
 
+    // only make changes to timesheet when session is in a pomodoro
+    if (session.status !== "pomodoro") return task.save();
+
+    if (previousColumn.isFocus && !targetColumn.isFocus) {
+      const lastTimeEntry = task.timesheet[task.timesheet.length - 1];
+      lastTimeEntry.end = new Date();
+    }
+    
+    if (!previousColumn.isFocus && targetColumn.isFocus) {
+      task.timesheet.push({ start: new Date() });
+    }
+    
     return task.save();
   };
 
