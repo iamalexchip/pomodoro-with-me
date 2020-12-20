@@ -7,13 +7,14 @@ $gap: 10px;
 $scrollbar-thickness: 17px;
 $list-header-height: 36px;
 $list-footer-height: 36px;
+$nav-label-margin-left: 10px;
 // Misc
-$list-border-radius: 5px;
+$list-border-radius: 3px;
 $card-border-radius: 3px;
 // Colors
-$board-bg-color: #0079bf;
-$appbar-bg-color: #0067a3;
-$list-bg-color: #e2e4e6;
+$board-bg-color: #d2d6d8;
+$appbar-bg-color: #722323;
+$list-bg-color: #fff;
 
 body {
   margin: 0;
@@ -40,10 +41,67 @@ body {
   align-items: center;
   &.app {
     background-color: $appbar-bg-color;
-    font-size: 1.5rem;
+    justify-content: space-between;
+    
+    .actions {
+      display: flex;
+      
+      button.nav-button {
+        font-size: 1.3rem;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        display: block;
+        margin: 2px;
+        padding: 6px;
+        border-radius: 2px;
+      }
+    }
   }
   &.board {
     font-size: 1.1rem;
+    color: black;
+    justify-content: space-between;
+
+    .nav-left {
+      display: flex;
+
+      .nav-label-input {
+        margin-left: $nav-label-margin-left;
+        font-size: 1.1rem;
+        padding: 5px;
+      }
+      
+      .nav-label-button {
+        margin-left: $nav-label-margin-left;
+        border: 1px solid transparent;
+        padding: 5px;
+        background: transparent;
+        font-size: 1.1rem;
+        
+        &:hover {
+          border-color: rgba(0, 0, 0, 0.3);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .nav-right {
+      display: flex;
+      
+      .session-timer {
+        margin-right: 10px;
+      }
+
+      .pomodoro-timer {
+        font-size: 2em;
+      }
+
+      .timer-button {
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+    }
   }
 }
 
@@ -97,6 +155,7 @@ body {
 
     .list-item {
       background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.3);
       padding: $gap;
       &:not(:last-child) {
         margin-bottom: $gap;

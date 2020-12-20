@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { useParams } from "react-router-dom";
 import { Session, Task } from "common";
-import { SessionTemplate } from "../../templates/SessionTemplate";
+import SessionTemplate from "../../templates/SessionTemplate";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import TaskList from "./TaskList";
 import {
