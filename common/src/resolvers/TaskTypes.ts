@@ -18,11 +18,11 @@ export class UpdateTaskArgs {
   id: string;
   
   @Field({ nullable: true })
-  title?: string;
-
-  @Field({ nullable: true })
   column?: string;
-
+  
   @Field({ nullable: true })
-  position?: string;
+  position?: number;
+  
+  @Field({ nullable: true })
+  title?: string;
 }

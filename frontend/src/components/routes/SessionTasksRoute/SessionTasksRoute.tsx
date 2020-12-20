@@ -24,7 +24,8 @@ const SessionTasksRoute = () => {
   const {
     loading: isfetchingSessionTasks,
     error: fetchSessionTasksError,
-    data: fetchSessionTasksResult
+    data: fetchSessionTasksResult,
+    refetch: refetchSessionTask
   } = useQuery<IRESULT_SESSION_TASKS_ROUTE, IVARS_SESSION_TASKS_ROUTE>(
     SESSION_TASKS_ROUTE,
     { variables: { session: sessionId }}
@@ -34,7 +35,7 @@ const SessionTasksRoute = () => {
     { loading: isUpdatingTask, error: updateTaskError, data: updateTaskResult }
   ] = useMutation<Session, IVARS_UPDATE_TASK>(UPDATE_TASK);
   const [session, setSession] = useState<Session | null>(null);
-  const [tasks, setTasks] = useState<Task[] | null>(null);
+  const [tasks, setTasks] = useState<Task[] | null>([]);
 
   // Set state to fetched data 
   useEffect(() => {
@@ -50,6 +51,11 @@ const SessionTasksRoute = () => {
     if (fetchSessionTasksError) alert(fetchSessionTasksError);
   }, [updateTaskError, fetchSessionTasksError]);
 
+  // save task positions in DB
+  useEffect(() => {
+    refetchSessionTask();
+  }, [updateTaskResult]);
+
   // Loading screen 
   if (!session || !tasks) return <div>Loading tasks...</div>;
   // End Loading screen
@@ -63,8 +69,9 @@ const SessionTasksRoute = () => {
     if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
     const [taskId, columnId, position] = [draggableId, destination.droppableId, destination.index];
+    // save the tasks
     setTasks(reorderTasks(tasks, taskId, columnId, position));
-
+    // save to database
     updateTask({
       variables: {
         id: taskId,
