@@ -5,9 +5,12 @@ import SessionTemplate from "../../templates/SessionTemplate";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import TaskList from "./TaskList";
 import {
-  IRESULT_SESSION_TASKS_ROUTE,
-  IVARS_SESSION_TASKS_ROUTE,
-  SESSION_TASKS_ROUTE,
+  IRESULT_GET_SESSION,
+  IVARS_GET_SESSION,
+  GET_SESSION,
+  IRESULT_GET_TASKS,
+  IVARS_GET_TASKS,
+  GET_TASKS,
   IVARS_UPDATE_TASK,
   UPDATE_TASK
 } from "../../../constants/graphql";
@@ -22,12 +25,21 @@ interface IParams {
 const SessionTasksRoute = () => {
   const { sessionId } = useParams<IParams>();
   const {
-    loading: isfetchingSessionTasks,
-    error: fetchSessionTasksError,
-    data: fetchSessionTasksResult,
-    refetch: refetchSessionTask
-  } = useQuery<IRESULT_SESSION_TASKS_ROUTE, IVARS_SESSION_TASKS_ROUTE>(
-    SESSION_TASKS_ROUTE,
+    loading: isfetchingSession,
+    error: fetchSessionError,
+    data: fetchSessionResult,
+    refetch: refetchSession
+  } = useQuery<IRESULT_GET_SESSION, IVARS_GET_SESSION>(
+    GET_SESSION,
+    { variables: { session: sessionId }}
+  );
+  const {
+    loading: isfetchingTasks,
+    error: fetchTasksError,
+    data: fetchTasksResult,
+    refetch: refetchTasks
+  } = useQuery<IRESULT_GET_TASKS, IVARS_GET_TASKS>(
+    GET_TASKS,
     { variables: { session: sessionId }}
   );
   const [
@@ -39,28 +51,29 @@ const SessionTasksRoute = () => {
 
   // Set state to fetched data 
   useEffect(() => {
-    if (fetchSessionTasksResult) {
-      setSession(fetchSessionTasksResult.session);
-      setTasks(fetchSessionTasksResult.tasks);
+    if (fetchSessionResult) {
+      setSession(fetchSessionResult.session);
     }
-  }, [fetchSessionTasksResult])
+
+    if (fetchTasksResult) {
+      setTasks(fetchTasksResult.tasks);
+    }
+  }, [fetchSessionResult, fetchTasksResult])
   
   // Update task error display
   useEffect(() => {
     if (updateTaskError) alert(updateTaskError);
-    if (fetchSessionTasksError) alert(fetchSessionTasksError);
-  }, [updateTaskError, fetchSessionTasksError]);
+    if (fetchSessionError) alert(fetchSessionError);
+  }, [updateTaskError, fetchSessionError]);
 
-  // save task positions in DB
+  // refecth tasks from DB
   useEffect(() => {
-    refetchSessionTask();
+    if (updateTaskResult) refetchTasks();
   }, [updateTaskResult]);
 
   // Loading screen 
   if (!session || !tasks) return <div>Loading tasks...</div>;
   // End Loading screen
-
-  const { columns } = session;
   
   const onDragEnd = (result: DropResult) => {
     const { source, destination, draggableId } = result;
@@ -82,10 +95,10 @@ const SessionTasksRoute = () => {
   }
 
   return (
-    <SessionTemplate session={session}>
+    <SessionTemplate session={session} refetchSession={refetchSession}>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="lists">
-          {columns.map((column) =>
+          {session.columns.map((column) =>
             <TaskList
               key={column.id}
               column={column}

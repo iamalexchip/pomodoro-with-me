@@ -3,17 +3,16 @@ import { Session, Task } from 'common';
 
 // SESSION_TASKS_ROUTE
 
-export interface IVARS_SESSION_TASKS_ROUTE {
+export interface IVARS_GET_SESSION {
   session: string;
 }
 
-export interface IRESULT_SESSION_TASKS_ROUTE {
+export interface IRESULT_GET_SESSION {
   session: Session;
-  tasks: Task[];
 }
 
-export const SESSION_TASKS_ROUTE = gql`
-  query TasksQuery($session: String!) {
+export const GET_SESSION = gql`
+  query getSession($session: String!) {
     session: getSession(slug: $session) {
       name
       status
@@ -31,7 +30,19 @@ export const SESSION_TASKS_ROUTE = gql`
         end
       }
     }
+  }
+`;
 
+export interface IVARS_GET_TASKS {
+  session: string;
+}
+
+export interface IRESULT_GET_TASKS {
+  tasks: Task[];
+}
+
+export const GET_TASKS = gql`
+  query getTasks($session: String!) {
     tasks: listTasks(session: $session) {
       id
       title
@@ -64,3 +75,23 @@ export const UPDATE_TASK = gql`
   }
 `;
 
+// TOGGLE_SESSION
+
+export interface IVARS_TOGGLE_SESSION {
+  slug: string;
+  status: string;
+}
+
+export const TOGGLE_SESSION = gql`
+mutation toggleSession($slug: String!, $status: SessionStatus!) {
+  toggleSession(slug: $slug, status: $status) {
+    name
+    end
+    status
+    timesheet {
+      start
+      end
+    }
+  }
+}
+`;

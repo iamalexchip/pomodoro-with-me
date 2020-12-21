@@ -3,13 +3,15 @@ import { Session } from "common";
 import { FaShareAlt, FaRegBell, FaCog, FaUserCircle, FaCaretDown } from 'react-icons/fa';
 import { GiTomato } from "react-icons/gi";
 import { TimeDisplay } from "./TimeDisplay"; 
+import { TimeButton } from "./TimeButton";
 
 interface ISessionTemplate {
   children: ReactNode;
   session: Session;
+  refetchSession: any
 }
 
-const SessionTemplate = ({ children, session }: ISessionTemplate) => {
+const SessionTemplate = ({ children, session, refetchSession }: ISessionTemplate) => {
 
   return (
     <div className="ui">
@@ -30,11 +32,11 @@ const SessionTemplate = ({ children, session }: ISessionTemplate) => {
             <option>Tasks</option>
             <option>Timeline</option>
           </select>
-          <div className="nav-label">Board bar</div>
+          <div className="nav-label">{session.name}</div>
         </div>
         <div className="nav-right">
           <TimeDisplay status={session.status} timesheet={session.timesheet} end={session.end} />
-          <button className="timer-button">Break</button>
+          <TimeButton status={session.status} refetchSession={refetchSession} />
         </div>
       </nav>
       {children}
