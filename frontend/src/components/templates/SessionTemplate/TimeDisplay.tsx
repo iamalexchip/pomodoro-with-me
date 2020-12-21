@@ -1,8 +1,7 @@
-import { FC } from "react";
-import { useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { SessionStatus, TimeEntry } from "common";
 import { getDiff } from "../../../utils/timeUtils";
-import { useEffect } from "react";
+import { NO_DURATION } from "../../../constants/time";
 
 interface ITimeDisplay {
   end: Date | null;
@@ -12,8 +11,7 @@ interface ITimeDisplay {
 
 export const TimeDisplay: FC<ITimeDisplay> = ({ timesheet, status, end }) => {
   const [now, setNow] = useState(new Date());
-  let sessionStartTime, sessionEndTime;
-  let sessionDuration = "0:00:00";
+  let sessionStart, sessionEnd, sessionDuration, pomodoroStart, pomodoroEnd, pomodoroDuration;
 
   useEffect(() => {
     const interval = setInterval(() => setNow(new Date()), 1000);
@@ -22,26 +20,38 @@ export const TimeDisplay: FC<ITimeDisplay> = ({ timesheet, status, end }) => {
     };
   }, []);
 
-  if (status !== "unbegun") {
-    sessionStartTime = timesheet[0].start;
+  if (status === "unbegun") {
+    sessionDuration = pomodoroDuration = NO_DURATION;
+  } else {
+    sessionStart = timesheet[0].start;
   }
   
-  if (status === "pomodoro" || status === "break") {
-    sessionEndTime = now;
+  if (status === "pomodoro") {
+    sessionEnd = pomodoroEnd = now;
+    pomodoroStart = timesheet[timesheet.length - 1].start;
+  }
+  
+  if (status === "break") {
+    sessionEnd = pomodoroEnd = now;
+    pomodoroStart = timesheet[timesheet.length - 1].end;
   }
 
   if (status === "done") {
-    sessionEndTime = end;
+    sessionEnd = end;
   }
   
-  if (sessionStartTime && sessionEndTime) {
-    sessionDuration = getDiff(sessionStartTime, sessionEndTime);
+  if (sessionStart && sessionEnd) {
+    sessionDuration = getDiff(sessionStart, sessionEnd);
+  }
+  
+  if (pomodoroStart && pomodoroEnd) {
+    pomodoroDuration = getDiff(pomodoroStart, pomodoroEnd);
   }
 
   return (
     <>
       <div className="session-timer">{sessionDuration}</div>
-      <div className="pomodoro-timer">14:32</div>
+      <div className="pomodoro-timer">{pomodoroDuration}</div>
     </>
   )
 }
