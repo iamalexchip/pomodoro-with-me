@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -b",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "reset": "rm -r dist && rm tsconfig.tsbuildinfo"
   },
   "dependencies": {
     "@typegoose/typegoose": "^7.4.5",
