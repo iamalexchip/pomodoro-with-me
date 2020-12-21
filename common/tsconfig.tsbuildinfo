@@ -2097,7 +2097,7 @@
         "affectsGlobalScope": false
       },
       "./src/entities/TimeEntryEntity.ts": {
-        "version": "795f2b24b7d15e96dbdc9f0c5aa8fff5939f169e87bb9d37fb783ed35f89ae85",
+        "version": "6754ca867c52c26d83a83d218f04724568c2278045fee993d3b1072784ae7c97",
         "signature": "d4d003eafb93f3f6b793d8f140fca48e764f22947cd949e3b0c8c57a76c46034",
         "affectsGlobalScope": false
       },
@@ -2127,8 +2127,8 @@
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "9753bedae9722d726e66d61bbc78aebca39e9139704ae384e1cec8e9d610b837",
-        "signature": "ae959d7d0181086531c35819591b50a262cc677e742be97d0075f598b686a59e",
+        "version": "ed611c7ad8a38492ba40d3deca3a44dffd16ae5075e0a91be9f17bc25fe5c7a4",
+        "signature": "fd3046647c4e6e04cc226c7a6b856a052aa32b21df40b4b078d9dea991bd0110",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/accepts/index.d.ts": {
@@ -2853,6 +2853,7 @@
       "./src/index.ts": [
         "./src/entities/SessionEntity.ts",
         "./src/entities/TaskEntity.ts",
+        "./src/entities/TimeEntryEntity.ts",
         "./src/resolvers/ColumnTypes.ts",
         "./src/resolvers/SessionTypes.ts",
         "./src/resolvers/TaskTypes.ts"
@@ -4931,6 +4932,7 @@
       "./src/index.ts": [
         "./src/entities/SessionEntity.ts",
         "./src/entities/TaskEntity.ts",
+        "./src/entities/TimeEntryEntity.ts",
         "./src/resolvers/ColumnTypes.ts",
         "./src/resolvers/SessionTypes.ts",
         "./src/resolvers/TaskTypes.ts"
