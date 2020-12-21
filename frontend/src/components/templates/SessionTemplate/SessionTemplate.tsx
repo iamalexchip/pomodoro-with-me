@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { FC } from "react";
 import { FaShareAlt, FaRegBell, FaCog, FaUserCircle, FaCaretDown } from 'react-icons/fa';
 import { GiTomato } from "react-icons/gi";
-import SessionLabel from "./SessionLabel";
 
 interface ISessionTemplate {
 }
@@ -16,16 +14,19 @@ const SessionTemplate: FC<ISessionTemplate> = ({ children }) => {
           <GiTomato /> Pomodoro With Me
         </div>
         <div className="actions">
-          <button className="nav-button"><FaShareAlt /></button>
-          <button className="nav-button"><FaRegBell /></button>
-          <button className="nav-button"><FaCog /></button>
-          <button className="nav-button"><FaUserCircle /></button>
+          <button className="btn-faint"><FaShareAlt /></button>
+          <button className="btn-faint"><FaRegBell /></button>
+          <button className="btn-faint"><FaCog /></button>
+          <button className="btn-faint"><FaUserCircle /></button>
         </div>
       </nav>
       <nav className="navbar board">
         <div className="nav-left">
-          <button className="menu-button">Task <FaCaretDown /></button>
-          <SessionLabel />
+          <select>
+            <option>Tasks</option>
+            <option>Timeline</option>
+          </select>
+          <div className="nav-label">Board bar</div>
         </div>
         <div className="nav-right">
           <div className="session-timer">01:14:32</div>
