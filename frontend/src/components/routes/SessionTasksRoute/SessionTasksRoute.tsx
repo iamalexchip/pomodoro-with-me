@@ -82,7 +82,7 @@ const SessionTasksRoute = () => {
   }
 
   return (
-    <SessionTemplate>
+    <SessionTemplate session={session}>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="lists">
           {columns.map((column) =>

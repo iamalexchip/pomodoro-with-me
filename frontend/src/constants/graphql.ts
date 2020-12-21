@@ -19,13 +19,16 @@ export const SESSION_TASKS_ROUTE = gql`
       status
       isModerated
       isOpen
-      start
-      end,
+      end
       columns {
         id
         position
         isFocus
         label
+      }
+      timesheet {
+        start
+        end
       }
     }
 

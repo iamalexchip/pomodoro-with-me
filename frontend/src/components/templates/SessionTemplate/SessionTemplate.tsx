@@ -1,11 +1,15 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
+import { Session } from "common";
 import { FaShareAlt, FaRegBell, FaCog, FaUserCircle, FaCaretDown } from 'react-icons/fa';
 import { GiTomato } from "react-icons/gi";
+import { TimeDisplay } from "./TimeDisplay"; 
 
 interface ISessionTemplate {
+  children: ReactNode;
+  session: Session;
 }
 
-const SessionTemplate: FC<ISessionTemplate> = ({ children }) => {
+const SessionTemplate = ({ children, session }: ISessionTemplate) => {
 
   return (
     <div className="ui">
@@ -29,8 +33,7 @@ const SessionTemplate: FC<ISessionTemplate> = ({ children }) => {
           <div className="nav-label">Board bar</div>
         </div>
         <div className="nav-right">
-          <div className="session-timer">01:14:32</div>
-          <div className="pomodoro-timer">14:32</div>
+          <TimeDisplay status={session.status} timesheet={session.timesheet} end={session.end} />
           <button className="timer-button">Break</button>
         </div>
       </nav>
