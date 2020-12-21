@@ -12,6 +12,7 @@ interface ITimeDisplay {
 export const TimeDisplay: FC<ITimeDisplay> = ({ timesheet, status, end }) => {
   const [now, setNow] = useState(new Date());
   let sessionStart, sessionEnd, sessionDuration, pomodoroStart, pomodoroEnd, pomodoroDuration;
+  let textColor = "";
 
   useEffect(() => {
     const interval = setInterval(() => setNow(new Date()), 1000);
@@ -29,6 +30,7 @@ export const TimeDisplay: FC<ITimeDisplay> = ({ timesheet, status, end }) => {
   if (status === "pomodoro") {
     sessionEnd = pomodoroEnd = now;
     pomodoroStart = timesheet[timesheet.length - 1].start;
+    textColor = "red";
   }
   
   if (status === "break") {
@@ -50,8 +52,8 @@ export const TimeDisplay: FC<ITimeDisplay> = ({ timesheet, status, end }) => {
 
   return (
     <>
-      <div className="session-timer">{sessionDuration}</div>
-      <div className="pomodoro-timer">{pomodoroDuration}</div>
+      <div className="session-timer" style={{ color: textColor}}>{sessionDuration}</div>
+      <div className="pomodoro-timer" style={{ color: textColor}}>{pomodoroDuration}</div>
     </>
   )
 }
