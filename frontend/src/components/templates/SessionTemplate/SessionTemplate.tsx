@@ -4,6 +4,7 @@ import { FaShareAlt, FaRegBell, FaCog, FaUserCircle, FaCaretDown } from 'react-i
 import { GiTomato } from "react-icons/gi";
 import { TimeDisplay } from "./TimeDisplay"; 
 import { TimeButton } from "./TimeButton";
+import { SessionSettings } from "./SessionSettings";
 
 interface ISessionTemplate {
   children: ReactNode;
@@ -40,6 +41,7 @@ const SessionTemplate = ({ children, session, refetchSession }: ISessionTemplate
         </div>
       </nav>
       {children}
+      <SessionSettings />
     </div>
   )
 };
