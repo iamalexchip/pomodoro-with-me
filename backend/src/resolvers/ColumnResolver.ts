@@ -13,16 +13,16 @@ import {
 @Resolver(of => SessionColumn)
 export class ColumnResolver  {
   @Mutation(_returns => Session)
-  async createColumn(@Args() { session: name, label }: CreateColumnArgs) {
-    const session = await SessionModel.findOne({ name });
+  async createColumn(@Args() { session: slug, label }: CreateColumnArgs) {
+    const session = await SessionModel.findOne({ slug });
     if(!session) throw new ApolloError('Session not found', 'SESSION_NOT_FOUND');
     session.columns.push({ position: session.columns.length + 1, label });
     return await session.save();
   };
 
   @Mutation(_returns => Session)
-  async updateColumn(@Args() { session: name, id, label, position, isFocus }: UpdateColumnArgs) {
-    const session = await SessionModel.findOne({ name });
+  async updateColumn(@Args() { session: slug, id, label, position, isFocus }: UpdateColumnArgs) {
+    const session = await SessionModel.findOne({ slug });
     if(!session) throw new ApolloError('Session not found', 'SESSION_NOT_FOUND');
     const column = session.columns.id(id);
     if (!column) throw new ApolloError('Column not found on session', 'COLUMN_NOT_FOUND');
@@ -52,8 +52,8 @@ export class ColumnResolver  {
   };
 
   @Mutation(_returns => Session, { nullable: true })
-  async deleteColumn(@Args() { session: name, id }: DeleteColumnArgs){
-    const session = await SessionModel.findOne({ name });
+  async deleteColumn(@Args() { session: slug, id }: DeleteColumnArgs){
+    const session = await SessionModel.findOne({ slug });
     if(!session) throw new ApolloError('Session not found', 'SESSION_NOT_FOUND');
     const column = session.columns.id(id);
     if (!column) throw new ApolloError('Column not found on session', 'COLUMN_NOT_FOUND');

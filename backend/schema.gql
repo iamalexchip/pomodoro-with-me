@@ -10,19 +10,19 @@ scalar DateTime
 
 type Mutation {
   createColumn(label: String!, session: String!): Session!
-  createSession(name: String!): Session!
+  createSession(name: String!, slug: String!): Session!
   createTask(column: String!, session: String!, title: String!): Task!
   deleteColumn(id: String!, session: String!): Session
-  deleteSession(name: String!): Boolean
+  deleteSession(slug: String!): Boolean
   deleteTask(id: String!): Boolean
-  toggleSession(name: String!, status: SessionStatus!): Session!
+  toggleSession(slug: String!, status: SessionStatus!): Session!
   updateColumn(id: String!, isFocus: Boolean, label: String, position: Float, session: String!): Session!
-  updateSession(isModerated: Boolean!, isOpen: Boolean!, name: String!): Session!
+  updateSession(isModerated: Boolean!, isOpen: Boolean!, name: String!, slug: String!): Session!
   updateTask(column: String, id: String!, position: Float, title: String): Task!
 }
 
 type Query {
-  getSession(name: String!): Session
+  getSession(slug: String!): Session
   listSessions: [Session!]!
   listTasks(session: String!): [Task!]!
 }
@@ -35,6 +35,7 @@ type Session {
   isModerated: Boolean!
   isOpen: Boolean!
   name: String!
+  slug: String!
   status: SessionStatus!
   timesheet: [TimeEntry!]!
 }

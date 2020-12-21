@@ -5,6 +5,9 @@ import { Session, SessionStatus } from "../entities/SessionEntity";
 export class UpdateSessionArgs implements Partial<Session> {
 
   @Field()
+  slug: string;
+
+  @Field()
   name: string;
 
   @Field()
@@ -18,7 +21,7 @@ export class UpdateSessionArgs implements Partial<Session> {
 export class ToggleSessionArgs implements Partial<Session> {
 
   @Field()
-  name: string;
+  slug: string;
 
   @Field(_type => SessionStatus)
   status: SessionStatus;

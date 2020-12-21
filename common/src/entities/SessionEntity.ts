@@ -37,6 +37,10 @@ export class Session {
 
   @Field()
   @Property({ required: true, unique: true })
+  slug: string;
+
+  @Field()
+  @Property({ required: true, default: "" })
   name: string;
 
   @Field(_type => SessionStatus)

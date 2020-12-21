@@ -2102,8 +2102,8 @@
         "affectsGlobalScope": false
       },
       "./src/entities/SessionEntity.ts": {
-        "version": "4dfbf437815c43955bdd36a4ad3ee4a601de7a17ffaea86c1352e25e019c5dbc",
-        "signature": "8c1b103890b27b780cf897ead7cc8b0861afd9fca257db82874988bdfe500bf7",
+        "version": "b7d324018e83b849971d07ffd2e1ef7f26d1138cf8c1e8d92b8b17b38e283b55",
+        "signature": "79d4fe74fc83580ce7ae056a70d75dff707d6eb1057970e928efe37ba8f3e904",
         "affectsGlobalScope": false
       },
       "./src/entities/TaskEntity.ts": {
@@ -2112,8 +2112,8 @@
         "affectsGlobalScope": false
       },
       "./src/resolvers/SessionTypes.ts": {
-        "version": "7ad3e794ca5f2f76b23f93bc7934820c72811ef0bcd10a43dc4a3eac5f8dd14d",
-        "signature": "05eb63c0c57396013fe60294320dadf70781b1e1a4cf9865de256c2e1b1eed17",
+        "version": "7a9827d8f6025d480070e80467bce99a1ae5ba57b9baabbddd4b8da1c6072aa7",
+        "signature": "cd0e5d66e9174d10a8a712b4d1b99cf4dd4c8e7b4c0be83a239b65813fe1f3fb",
         "affectsGlobalScope": false
       },
       "./src/resolvers/ColumnTypes.ts": {

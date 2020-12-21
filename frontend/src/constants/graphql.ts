@@ -14,7 +14,7 @@ export interface IRESULT_SESSION_TASKS_ROUTE {
 
 export const SESSION_TASKS_ROUTE = gql`
   query TasksQuery($session: String!) {
-    session: getSession(name: $session) {
+    session: getSession(slug: $session) {
       name
       status
       isModerated

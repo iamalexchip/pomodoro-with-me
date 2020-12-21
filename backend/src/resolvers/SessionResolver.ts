@@ -14,16 +14,20 @@ export class SessionResolver {
   };
 
   @Query(_returns => Session, { nullable: true })
-  async getSession(@Arg("name") name: string) {
-    return await SessionService.findOrFail({ name });
+  async getSession(@Arg("slug") slug: string) {
+    return await SessionService.findOrFail({ slug });
   };
 
   @Mutation(_returns => Session)
-  async createSession(@Arg("name") name: string) {
-    const sessionExists = await SessionModel.findOne({ name });
-    if(sessionExists) throw new ApolloError('Session already exists', 'DUPLICATE_SESSION');
+  async createSession(@Arg("slug") slug: string, @Arg("name") name: string) {
+    const sessionExists = await SessionModel.findOne({ slug });
+    if(sessionExists) throw new ApolloError(
+      `Session with slug [${slug}] already exists`,
+      'DUPLICATE_SESSION'
+    );
     const session = new SessionModel(
       {
+        slug,
         name,
         columns: [
           { position: 1, isFocus: false, label: 'Todo' },
@@ -36,17 +40,18 @@ export class SessionResolver {
   };
 
   @Mutation(_returns => Session)
-  async updateSession(@Args() { name, isModerated, isOpen }: UpdateSessionArgs) {
-    const session = await SessionService.findOrFail({ name });
-    session.isModerated = (isModerated === undefined) ? session.isModerated : isModerated;
-    session.isOpen = (isOpen === undefined) ? session.isOpen : isOpen;
+  async updateSession(@Args() { slug, name, isModerated, isOpen }: UpdateSessionArgs) {
+    const session = await SessionService.findOrFail({ slug });
+    if (name !== undefined) session.name = name;
+    if (isModerated !== undefined) session.isModerated = isModerated;
+    if (isOpen !== undefined) session.isOpen;
 
     return await session.save();
   };
 
   @Mutation(_returns => Session)
-  async toggleSession(@Args() { name, status }: ToggleSessionArgs) {
-    const session = await SessionService.findOrFail({ name });
+  async toggleSession(@Args() { slug, status }: ToggleSessionArgs) {
+    const session = await SessionService.findOrFail({ slug });
 
     if (session.status === status) {
       throw new ApolloError(`Session status is already set to [${status}]`, 'SESSION_DESYNC');
@@ -93,9 +98,9 @@ export class SessionResolver {
   };
 
   @Mutation(_returns => Boolean, { nullable: true })
-  async deleteSession(@Arg("name") name: string) {
-    await SessionService.findOrFail({ name });
-    await SessionModel.deleteOne({ name });
+  async deleteSession(@Arg("slug") slug: string) {
+    await SessionService.findOrFail({ slug });
+    await SessionModel.deleteOne({ slug });
     return true;
   };
 }

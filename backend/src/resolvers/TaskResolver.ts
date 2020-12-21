@@ -8,14 +8,14 @@ import { ApolloError } from "apollo-server-express";
 @Resolver()
 export class TaskResolver {
   @Query(_returns => [Task])
-  async listTasks(@Arg("session") name: string) {
-    const session = await SessionService.findOrFail({ name });
+  async listTasks(@Arg("session") slug: string) {
+    const session = await SessionService.findOrFail({ slug });
     return await TaskModel.find({ session: session.id }).populate("session");
   };
 
   @Mutation(_returns => Task)
-  async createTask(@Args() { session: name, title, column }: CreateTaskArgs) {
-    const session = await SessionService.findOrFail({ name });
+  async createTask(@Args() { session: slug, title, column }: CreateTaskArgs) {
+    const session = await SessionService.findOrFail({ slug });
     const task = new TaskModel(
       {
         session: session,
@@ -50,7 +50,7 @@ export class TaskResolver {
     
     if (!targetColumn) {
       throw new ApolloError(
-        `Target column [${column}] was not found in sesssion [${session.name}]`,
+        `Target column [${column}] was not found in sesssion [${session.slug}]`,
         "COLUMN_NOT_FOUND"
       );
     }
