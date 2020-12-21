@@ -15,6 +15,7 @@ $card-border-radius: 3px;
 $board-bg-color: #d2d6d8;
 $appbar-bg-color: #722323;
 $list-bg-color: #fff;
+$focus-list-bg-color: $appbar-bg-color;
 
 body {
   margin: 0;
@@ -153,6 +154,16 @@ body {
   }
 }
 
+.list.focus-column {
+  > * {
+    background-color: $focus-list-bg-color;
+  }
+
+  header {
+    color: #fff;
+  }
+}
+
 button.btn-faint {
   font-size: 1.3rem;
   border: none;
@@ -162,8 +173,4 @@ button.btn-faint {
   margin: 2px;
   padding: 6px;
   border-radius: 2px;
-}
-
-button.btn {
-
 }

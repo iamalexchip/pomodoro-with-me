@@ -12,7 +12,7 @@ const TaskList: FC<CiTaskList> = ({ column, tasks  }) => {
   return (
     <Droppable droppableId={column.id}>
       {(provided:DroppableProvided) => (
-        <div className="list">
+        <div className={"list" + (column.isFocus ? " focus-column" : "") }>
           <header>{column.label}</header>
           <div
             className="list-container"
