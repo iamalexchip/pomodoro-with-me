@@ -43,8 +43,6 @@ export class TaskResolver {
     
     await TaskService.moveTask(task.id, column, position);
 
-    return await TaskModel.findById(id);
-    
     const previousColumn = session.columns.id(task.column);
     const targetColumn = session.columns.id(column);
     
@@ -56,7 +54,7 @@ export class TaskResolver {
     }
 
     // only make changes to timesheet when session is in a pomodoro
-    if (session.status !== "pomodoro") return task.save();
+    if (session.status !== "pomodoro") return task;
 
     if (previousColumn.isFocus && !targetColumn.isFocus) {
       const lastTimeEntry = task.timesheet[task.timesheet.length - 1];
