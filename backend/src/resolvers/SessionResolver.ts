@@ -53,7 +53,7 @@ export class SessionResolver {
     }
 
     if (status === 'unbegun') {
-      session.start = null;
+      session.timesheet = [];
       session.end = null;
       clearTasks(session)
       // todo: notify(reset)
@@ -66,25 +66,25 @@ export class SessionResolver {
 
     if (status === 'pomodoro') {
       if (session.status === 'unbegun') {
-        session.start = new Date();
         // todo: notify('start): emails etc
       } else {
         // notify('continue')// run async
       }
 
+      session.timesheet.push({ start: new Date });
       startTasks(session);
     }
 
-    if (status === 'break') {
+    if (status === 'break' || status === 'done') {
       // todo: notify('break')
-      // todo: Tasks.stop(session)
+      const lastTimeEntry = session.timesheet[session.timesheet.length - 1];
+      lastTimeEntry.end = new Date();
       stopTasks(session);
     }
-
+    
     if (status === 'done') {
       session.end = new Date();
       // todo: notify(done) emails etc
-      stopTasks(session);
     }
 
     session.status = status;

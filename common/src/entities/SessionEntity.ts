@@ -1,5 +1,6 @@
 import { ObjectType, Field, ID, registerEnumType } from "type-graphql";
 import { prop as Property, getModelForClass, Ref } from "@typegoose/typegoose";
+import { TimeEntry } from "./TimeEntryEntity";
 
 export enum SessionStatus {
   unbegun =  'unbegun',
@@ -50,9 +51,9 @@ export class Session {
   @Property({ default: true })
   isOpen: boolean
 
-  @Field({ nullable: true })
-  @Property({ nullable: true, default: null })
-  start: Date
+  @Field(_type => [TimeEntry])
+  @Property({ type: [TimeEntry] })
+  timesheet: TimeEntry[]
 
   @Field({ nullable: true })
   @Property({ nullable: true, default: null })

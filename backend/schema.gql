@@ -35,8 +35,8 @@ type Session {
   isModerated: Boolean!
   isOpen: Boolean!
   name: String!
-  start: DateTime
   status: SessionStatus!
+  timesheet: [TimeEntry!]!
 }
 
 """The Session column model"""
@@ -66,7 +66,7 @@ type Task {
   updateAt: DateTime!
 }
 
-"""The Session column model"""
+"""Time entry model"""
 type TimeEntry {
   end: DateTime
   id: ID!

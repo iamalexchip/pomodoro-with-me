@@ -1,20 +1,7 @@
 import { ObjectType, Field, ID } from "type-graphql";
 import { prop as Property, getModelForClass, Ref } from "@typegoose/typegoose";
 import { Session } from "./SessionEntity";
-
-@ObjectType({ description: "The Session column model" })
-export class TimeEntry {
-  @Field(() => ID)
-  id: string;
-  
-  @Field({ nullable: true })
-  @Property({ nullable: true, default: null })
-  start: Date;
-  
-  @Field({ nullable: true })
-  @Property({ nullable: true, default: null })
-  end: Date;
-}
+import { TimeEntry } from "./TimeEntryEntity";
 
 @ObjectType({ description: "The Task model" })
 export class Task {

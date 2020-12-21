@@ -2096,14 +2096,19 @@
         "signature": "f5907c563adc19cb2cd2e42de8149e7cdac46da3830f268d6158c9545fa7d160",
         "affectsGlobalScope": false
       },
+      "./src/entities/TimeEntryEntity.ts": {
+        "version": "795f2b24b7d15e96dbdc9f0c5aa8fff5939f169e87bb9d37fb783ed35f89ae85",
+        "signature": "d4d003eafb93f3f6b793d8f140fca48e764f22947cd949e3b0c8c57a76c46034",
+        "affectsGlobalScope": false
+      },
       "./src/entities/SessionEntity.ts": {
-        "version": "dfd97430b9489a088a82421e5452327b938f6d75e83afe2225e997ed70b86dbd",
-        "signature": "37dc0c61e4e702582b601445178b47006965febc2a3f8ad2a4dc6a53843c6fcd",
+        "version": "4dfbf437815c43955bdd36a4ad3ee4a601de7a17ffaea86c1352e25e019c5dbc",
+        "signature": "8c1b103890b27b780cf897ead7cc8b0861afd9fca257db82874988bdfe500bf7",
         "affectsGlobalScope": false
       },
       "./src/entities/TaskEntity.ts": {
-        "version": "0295e3c10cf29908f157664a5997f3009b57b8dc2fae55d9e292c2c47120f4aa",
-        "signature": "136a86c0273f72b90ae9491c337fa9a78745e3099c722da545771444e4de4066",
+        "version": "8f886cbd576df8c30f8631e121343da392d21fb31a91befa883f50f2c97951cc",
+        "signature": "eb396ecb2ad5c0bf6a8d73ef9d5e776ce260d52f86a3be294873093539f1b14c",
         "affectsGlobalScope": false
       },
       "./src/resolvers/SessionTypes.ts": {
@@ -2401,7 +2406,7 @@
         "signature": "e8465811693dfe4e96ef2b3dffda539d6edfe896961b7af37b44db2c0e48532b",
         "affectsGlobalScope": false
       },
-      "../node_modules/@types/node-fetch/node_modules/form-data/index.d.ts": {
+      "../node_modules/form-data/index.d.ts": {
         "version": "cbb7029e32a6a72178cda8baa9129b1ee6d1d779a35e46c780e38b4909d42a89",
         "signature": "cbb7029e32a6a72178cda8baa9129b1ee6d1d779a35e46c780e38b4909d42a89",
         "affectsGlobalScope": false
@@ -2832,12 +2837,18 @@
     "referencedMap": {
       "./src/entities/SessionEntity.ts": [
         "../node_modules/@typegoose/typegoose/lib/typegoose.d.ts",
-        "../node_modules/type-graphql/dist/index.d.ts"
+        "../node_modules/type-graphql/dist/index.d.ts",
+        "./src/entities/TimeEntryEntity.ts"
       ],
       "./src/entities/TaskEntity.ts": [
         "../node_modules/@typegoose/typegoose/lib/typegoose.d.ts",
         "../node_modules/type-graphql/dist/index.d.ts",
-        "./src/entities/SessionEntity.ts"
+        "./src/entities/SessionEntity.ts",
+        "./src/entities/TimeEntryEntity.ts"
+      ],
+      "./src/entities/TimeEntryEntity.ts": [
+        "../node_modules/@typegoose/typegoose/lib/typegoose.d.ts",
+        "../node_modules/type-graphql/dist/index.d.ts"
       ],
       "./src/index.ts": [
         "./src/entities/SessionEntity.ts",
@@ -3066,15 +3077,10 @@
       ],
       "../node_modules/@types/node-fetch/index.d.ts": [
         "../node_modules/@types/node-fetch/externals.d.ts",
-        "../node_modules/@types/node-fetch/node_modules/form-data/index.d.ts",
         "../node_modules/@types/node/http.d.ts",
         "../node_modules/@types/node/index.d.ts",
-        "../node_modules/@types/node/url.d.ts"
-      ],
-      "../node_modules/@types/node-fetch/node_modules/form-data/index.d.ts": [
-        "../node_modules/@types/node/http.d.ts",
-        "../node_modules/@types/node/index.d.ts",
-        "../node_modules/@types/node/stream.d.ts"
+        "../node_modules/@types/node/url.d.ts",
+        "../node_modules/form-data/index.d.ts"
       ],
       "../node_modules/@types/node/base.d.ts": [
         "../node_modules/@types/node/assert.d.ts",
@@ -4060,6 +4066,11 @@
       ],
       "../node_modules/class-validator/types/validation/ValidatorConstraintInterface.d.ts": [
         "../node_modules/class-validator/types/validation/ValidationArguments.d.ts"
+      ],
+      "../node_modules/form-data/index.d.ts": [
+        "../node_modules/@types/node/http.d.ts",
+        "../node_modules/@types/node/index.d.ts",
+        "../node_modules/@types/node/stream.d.ts"
       ],
       "../node_modules/graphql-query-complexity/dist/QueryComplexity.d.ts": [
         "../node_modules/graphql/index.d.ts"
@@ -4909,9 +4920,13 @@
       ]
     },
     "exportedModulesMap": {
+      "./src/entities/SessionEntity.ts": [
+        "./src/entities/TimeEntryEntity.ts"
+      ],
       "./src/entities/TaskEntity.ts": [
         "../node_modules/@typegoose/typegoose/lib/typegoose.d.ts",
-        "./src/entities/SessionEntity.ts"
+        "./src/entities/SessionEntity.ts",
+        "./src/entities/TimeEntryEntity.ts"
       ],
       "./src/index.ts": [
         "./src/entities/SessionEntity.ts",
@@ -5137,11 +5152,6 @@
         "../node_modules/@types/node/index.d.ts",
         "../node_modules/@types/node/url.d.ts",
         "../node_modules/form-data/index.d.ts"
-      ],
-      "../node_modules/@types/node-fetch/node_modules/form-data/index.d.ts": [
-        "../node_modules/@types/node/http.d.ts",
-        "../node_modules/@types/node/index.d.ts",
-        "../node_modules/@types/node/stream.d.ts"
       ],
       "../node_modules/@types/node/base.d.ts": [
         "../node_modules/@types/node/assert.d.ts",
@@ -6127,6 +6137,11 @@
       ],
       "../node_modules/class-validator/types/validation/ValidatorConstraintInterface.d.ts": [
         "../node_modules/class-validator/types/validation/ValidationArguments.d.ts"
+      ],
+      "../node_modules/form-data/index.d.ts": [
+        "../node_modules/@types/node/http.d.ts",
+        "../node_modules/@types/node/index.d.ts",
+        "../node_modules/@types/node/stream.d.ts"
       ],
       "../node_modules/graphql-query-complexity/dist/QueryComplexity.d.ts": [
         "../node_modules/graphql/index.d.ts"
@@ -6978,6 +6993,7 @@
     "semanticDiagnosticsPerFile": [
       "./src/entities/SessionEntity.ts",
       "./src/entities/TaskEntity.ts",
+      "./src/entities/TimeEntryEntity.ts",
       "./src/index.ts",
       "./src/resolvers/ColumnTypes.ts",
       "./src/resolvers/SessionTypes.ts",
@@ -7046,7 +7062,6 @@
       "../node_modules/@types/mongodb/index.d.ts",
       "../node_modules/@types/node-fetch/externals.d.ts",
       "../node_modules/@types/node-fetch/index.d.ts",
-      "../node_modules/@types/node-fetch/node_modules/form-data/index.d.ts",
       "../node_modules/@types/node/assert.d.ts",
       "../node_modules/@types/node/async_hooks.d.ts",
       "../node_modules/@types/node/base.d.ts",
@@ -7299,6 +7314,7 @@
       "../node_modules/class-validator/types/validation/ValidatorConstraintInterface.d.ts",
       "../node_modules/class-validator/types/validation/ValidatorOptions.d.ts",
       "../node_modules/csstype/index.d.ts",
+      "../node_modules/form-data/index.d.ts",
       "../node_modules/graphql-query-complexity/dist/QueryComplexity.d.ts",
       "../node_modules/graphql-query-complexity/dist/estimators/directive/index.d.ts",
       "../node_modules/graphql-query-complexity/dist/estimators/fieldExtensions/index.d.ts",
