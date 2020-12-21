@@ -98,7 +98,7 @@ const SessionTasksRoute = () => {
     <SessionTemplate session={session} refetchSession={refetchSession}>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="lists">
-          {session.columns.map((column) =>
+          {[ ...session.columns ].sort((a, b) => a.position - b.position).map((column) =>
             <TaskList
               key={column.id}
               column={column}
