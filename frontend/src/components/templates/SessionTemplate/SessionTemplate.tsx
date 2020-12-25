@@ -23,7 +23,7 @@ const SessionTemplate = ({ children, session, refetchSession }: ISessionTemplate
         <div className="actions">
           <button className="btn-faint"><FaShareAlt /></button>
           <button className="btn-faint"><FaRegBell /></button>
-          <button className="btn-faint"><FaCog /></button>
+          <SessionSettings />
           <button className="btn-faint"><FaUserCircle /></button>
         </div>
       </nav>
@@ -41,7 +41,6 @@ const SessionTemplate = ({ children, session, refetchSession }: ISessionTemplate
         </div>
       </nav>
       {children}
-      <SessionSettings />
     </div>
   )
 };

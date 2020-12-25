@@ -2,6 +2,7 @@ import { FC, useEffect } from "react";
 import { Session, SessionStatus } from "common";
 import { IVARS_TOGGLE_SESSION, TOGGLE_SESSION } from "../../../constants/graphql";
 import { useMutation } from "@apollo/client";
+import Button from "react-bootstrap/Button";
 
 interface ITimeButton {
   status: SessionStatus;
@@ -47,11 +48,11 @@ export const TimeButton: FC<ITimeButton>= ({ status, refetchSession }) => {
 
   return (
     <div>
-      <button
-        className="timer-button"
+      <Button
+        variant={status === "pomodoro" ? "primary" : "secondary"}
         disabled={isTogglingSession}
         onClick={() => timeButtonAction(buttonAction)}
-      >{buttonText}</button>
+      >{buttonText}</Button>
     </div>
   )
 }
